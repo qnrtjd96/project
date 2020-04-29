@@ -3,6 +3,7 @@ package com.project.dao;
 import java.util.List;
 
 import com.project.vo.BoardVO;
+import com.project.vo.SearchCriteria;
 
 public interface BoardDAO {
 
@@ -10,7 +11,10 @@ public interface BoardDAO {
 	public void write(BoardVO boardVO) throws Exception;
 	
 	// 게시물 목록 조회
-	public List<BoardVO> list() throws Exception;
+	public List<BoardVO> list(SearchCriteria scri) throws Exception;
+	
+	//게시물 총개수
+	public int listCount(SearchCriteria scri) throws Exception;
 	
 	// 게시물 상세조회
 	public BoardVO read(int bno) throws Exception;

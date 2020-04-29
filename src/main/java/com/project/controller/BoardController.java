@@ -6,11 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.service.BoardService;
 import com.project.vo.BoardVO;
+import com.project.vo.PageMaker;
+import com.project.vo.SearchCriteria;
 
 @Controller
 @RequestMapping("/board/*")
@@ -38,11 +41,20 @@ public class BoardController {
 	
 	// 게시판 목록 조회
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model) throws Exception{
+	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		logger.info("list");
-		model.addAttribute("list",service.list());
+		
+		model.addAttribute("list", service.list(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.listCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+		
 		return "board/list";
-	}
+			
+		}
 	
 	// 게시판 조회
 	@RequestMapping(value = "/readView", method = RequestMethod.GET)

@@ -30,6 +30,14 @@
 				
 				location.href = "/board/list";
 			})
+			
+			// 목록
+			$(".list_btn").on("click", function(){
+			
+			location.href = "/board/list?page=${scri.page}"
+			+"&perPageNum=${scri.perPageNum}"
+			+"&searchType=${scri.searchType}&keyword=${scri.keyword}";
+			})
 		})
 	</script>
 	
@@ -39,6 +47,7 @@
 			<header>
 				<h1> 게시판</h1>
 			</header>
+			
 			<hr />
 			 
 			<nav>
@@ -49,6 +58,10 @@
 			<section id="container">
 				<form name="readForm" role="form" method="post">
 					<input type="hidden" id="bno" name="bno" value="${read.bno}" />
+					<input type="hidden" id="page" name="page" value="${scri.page}"> 
+					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
+					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 				</form>
 				<table>
 					<tbody>

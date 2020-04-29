@@ -16,14 +16,45 @@
     </insert>
     
     <!-- 목록 게시판  -->
-    <select id="list" resultType="com.project.vo.BoardVO">
-		SELECT   BNO
-			   , TITLE
-			   , WRITER
-			   , REGDATE
-		  FROM MP_BOARD
-		  ORDER BY BNO DESC
+    <select id="listPage" resultType="com.project.vo.BoardVO" parameterType="com.project.vo.SearchCriteria">
+		SELECT  BNO, 
+		        TITLE, 
+		        CONTENT,
+		        WRITER, 
+		        REGDATE
+		 FROM ( 
+		        SELECT BNO, 
+		               TITLE, 
+		               CONTENT, 
+		               WRITER, 
+		               REGDATE, 
+		               ROW_NUMBER() OVER(ORDER BY BNO DESC) AS RNUM
+		         FROM MP_BOARD
+		         WHERE 1=1 
+		         	<include refid="search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY BNO DESC
 	</select>
+	
+	<!-- 페이지 총개수 -->
+	<select id="listCount" parameterType="com.project.vo.SearchCriteria" resultType="int">
+		SELECT COUNT(BNO)
+		   FROM MP_BOARD
+		   WHERE 1=1
+		<include refid="search"></include>	
+		   AND BNO > 0
+	</select>
+	
+	<!-- 검색 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
 	
     <!-- 조회 게시판 -->
 	<select id="read" parameterType="int" resultType="com.project.vo.BoardVO">
