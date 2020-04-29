@@ -21,7 +21,6 @@
 			</nav>
 			<hr />
 			<section id="container">
-			<div></div>
 				<form role="form" method="get">
 					<table>
 						<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
