@@ -20,7 +20,7 @@
 			  홈 - 글 작성
 			</nav>
 			<hr />
-			
+			<div></div>
 			<section id="container">
 				<form role="form" method="get">
 					<table>
