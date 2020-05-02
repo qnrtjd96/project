@@ -10,7 +10,7 @@
 		
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	 
-	 	<title>게시판</title>
+	 	<title>게시판</title> 
 	</head>
 	<body>
 		<div class="container">
