@@ -5,13 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	li {list-style: none; display:inline; padding: 6px;}
+</style>
 </head>
 <body>
-	<div>
-		<div>
-			<a href="/board/list">목록</a>
-			<a href="/board/writeView">글 작성</a>
-		</div>
-	</div>
+<ul>
+	<li><a href="/board/list">목록</a>
+	<li><a href="/board/writeView">글 작성</a>
+</ul>
 </body>
 </html>
