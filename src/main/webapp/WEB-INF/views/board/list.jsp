@@ -10,12 +10,12 @@
 		
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	 
-	 	<title>게시판</title>
+	 	<title>블로그</title>
 	</head>
 	<body>
 		<div class="container">
 			<header>
-				<h1> 게시판</h1>
+				<h1>블로그</h1>
 			</header>
 			<hr />
 			 

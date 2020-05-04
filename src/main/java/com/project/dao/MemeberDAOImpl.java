@@ -27,6 +27,18 @@ public class MemeberDAOImpl implements MemberDAO {
 		return sql.selectOne("memberMapper.login", vo);
 	}
 	
+	//회원정보수정
+	@Override
+	public void memberUpdate(MemberVO vo) throws Exception {
+		sql.update("memberMapper.memberUpdate", vo); 
+	}
+	
+	//회원삭제
+	@Override
+	public void memberDelete(MemberVO vo) throws Exception {
+
+		sql.delete("memberMapper.memberDelete", vo);
+	}
 	
 
 }

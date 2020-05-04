@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberMapper">
-	<!-- 게시판 글 작성 -->
+	<!-- 블로그 글 작성 -->
 	<insert id="register">
 	    INSERT INTO MP_MEMBER(   USERID 
 	   					       , USERPASS 
@@ -15,9 +15,24 @@
    
    <!-- 로그인 -->
 	<select id="login" resultType="com.project.vo.MemberVO">
-		SELECT USERID, USERPASS 
+		SELECT USERID, USERPASS, USERNAME
 		  FROM MP_MEMBER
 		 WHERE USERID = #{userId}
 		   AND USERPASS = #{userPass}   
 	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="memberUpdate">
+		UPDATE MP_MEMBER SET 
+		USERPASS = #{userPass},
+		USERNAME = #{userName}
+		WHERE USERID = #{userId}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="memberDelete">
+		DELETE FROM MP_MEMBER
+		WHERE USERID = #{userId}
+		  AND USERPASS = #{userPass} 
+	</delete>
 </mapper>

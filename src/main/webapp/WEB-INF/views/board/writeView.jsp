@@ -9,7 +9,7 @@
 	
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<head>
-	 	<title>게시판</title>
+	 	<title>블로그</title>
 	</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -37,7 +37,7 @@
 	
 		<div id="root">
 			<header>
-				<h1> 게시판</h1>
+				<h1> 블로그</h1>
 			</header>
 			<hr />
 			 
