@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <html>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- 합쳐지고 최소화된 최신 CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	
 	<!-- 부가적인 테마 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<head>
 	 	<title>블로그</title>
@@ -34,36 +36,36 @@
 		}
 	</script>
 	<body>
-	
-		<div id="root">
+	  <article>
+		<div id="root" class="container">
 			<header>
 				<h1> 블로그</h1>
 			</header>
-			<hr />
-			 
-			<nav>
-			  홈 - 글 작성
-			</nav>
-			<hr />
-			
+			<div>	
+				<%@include file="nav.jsp" %>
+			</div>
+			<div class='table-responsive'>
 			<section id="container">
 				<form name="writeForm" method="post" action="/board/write">
-					<table>
+					<table class="table table-striped table-sm">
 						<tbody>
 							<c:if test="${member.userId != null}">
 								<tr>
 									<td>
-										<label for="title">제목</label><input type="text" id="title" name="title" class="chk" title="제목을 입력하세요"/>
+										<label for="title">제목 </label>
+										<input type="text" id="title" name="title" class="chk" title="제목을 입력하세요" style="height: 10%; width: 100%;"/>
 									</td>
 								</tr>	
 								<tr>
 									<td>
-										<label for="content">내용</label><textarea id="content" name="content" class="chk" title="내용을 입력하세요"></textarea>
+										<label for="content">내용</label>
+										<textarea id="content" name="content" class="chk" title="내용을 입력하세요"  style="height: 300; width: 100%;"></textarea>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<label for="writer">작성자</label><input type="text" id="writer" name="writer" class="chk" title="작성자 를입력하세요"/>
+										<label for="writer">작성자</label>
+										<input type="text" id="writer" name="writer" class="chk" title="작성자 를입력하세요"/>
 									</td>
 								<tr>
 									<td>						
@@ -72,13 +74,15 @@
 								</tr>
 							</c:if>
 							<c:if test="${member.userId == null}">
-								<p>로그인 후에 작성하실 수 있습니다.</p>
+								<p style="text-align: center; margin-top: 20px;">로그인 후에 작성하실 수 있습니다.</p>
 							</c:if>			
 						</tbody>			
 					</table>
 				</form>
 			</section>
+		  </div>
 			<hr />
 		</div>
+	  </article>
 	</body>
 </html>
