@@ -27,6 +27,8 @@ public class MemberController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void getregister() throws Exception{
 		logger.info("======================get register============================");
+		
+		return;
 	}
 	
 	// 회원가입 post
@@ -36,7 +38,7 @@ public class MemberController {
 			
 			service.register(vo);
 			
-			return null;
+			return "redirect:/";
 	}
 	
 	//로그인

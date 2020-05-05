@@ -14,7 +14,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			// 취소 
-			$(".cencle").on("click", function(){
+			$("#cencle").on("click", function(){
 				
 				location.href = "/";
 						    
@@ -63,7 +63,7 @@
 				</div>
 				<div class="form-group has-feedback">
 					<button class="btn btn-success" type="submit" id="submit">회원가입</button>
-					<button class="cencle btn btn-danger" type="button">취소</button>
+					<button class="cencle btn btn-danger" type="button" id="cencle">취소</button>
 				</div>
 			</form>
 		</section>

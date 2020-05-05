@@ -31,10 +31,8 @@
 					$("#userName").focus();
 					return false;
 				}
+				alert(${member.userId} + "님 회원정보 수정이 완료되었습니다.");
 			});
-			
-				
-			
 		})
 	</script>
 	<body>

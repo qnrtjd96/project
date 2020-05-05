@@ -44,16 +44,16 @@
 					<input type="password" id="userPass" name="userPass">
 				</div>
 				<div>
-					<button type="submit">로그인</button>
-					<button id="registerBtn" type="button">회원가입</button>
+					<button type="submit" class="btn btn-success">로그인</button>
+					<button id="registerBtn" type="button" class="btn btn-success">회원가입</button>
 				</div>
 			</c:if>
 			<c:if test="${member != null }">
 				<div class="form-group">
 					<p>${member.userId}님 환영 합니다.</p>
-					<button id="memberUpdateBtn" type="button">회원정보수정</button>
-					<button id="memberdeleteBtn" type="button">회원정보삭제</button>
-					<button id="logoutBtn" type="button">로그아웃</button>
+					<button id="memberUpdateBtn" type="button" class="btn btn-success">회원정보수정</button>
+					<button id="memberdeleteBtn" type="button" class="btn btn-success">회원정보삭제</button>
+					<button id="logoutBtn" type="button" class="cencle btn btn-danger">로그아웃</button>
 				</div>
 			</c:if>
 			<c:if test="${msg == false}">

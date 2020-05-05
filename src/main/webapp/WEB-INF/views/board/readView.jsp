@@ -94,13 +94,19 @@
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 				</form>
 				
+				<div style="float: right;">
+					<button type="button" class="update_btn btn btn-warning">수정</button>
+					<button type="button" class="delete_btn btn btn-danger">삭제</button>
+					<button type="button" class="list_btn btn btn-primary">목록</button>	
+				</div>
+				
 				<div class="form-group">
 					<label for="title" class="col-sm-2 control-label">제목</label>
-					<input type="text" id="title" name="title" class="form-control" value="${read.title}" readonly="readonly" />
+					<input type="text" id="title" name="title" class="form-control" value="${read.title}" readonly="readonly" style="height: 10%; width: 100%;"/>
 				</div>
 				<div class="form-group">
 					<label for="content" class="col-sm-2 control-label">내용</label>
-					<textarea id="content" name="content" class="form-control" readonly="readonly"><c:out value="${read.content}" /></textarea>
+					<textarea id="content" name="content" class="form-control" readonly="readonly" style="height: 300; width: 100%;"><c:out value="${read.content}" /></textarea>
 				</div>
 				<div class="form-group">
 					<label for="writer" class="col-sm-2 control-label">작성자</label>
@@ -109,12 +115,6 @@
 				<div class="form-group">
 					<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
 					<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />	
-				</div>
-								
-				<div>
-					<button type="button" class="update_btn btn btn-warning">수정</button>
-					<button type="button" class="delete_btn btn btn-danger">삭제</button>
-					<button type="button" class="list_btn btn btn-primary">목록</button>	
 				</div>
 				
 				<!-- 댓글 -->
