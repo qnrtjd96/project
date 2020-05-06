@@ -8,7 +8,14 @@ public class MemberVO {
 	private String userPass;
 	private String userName;
 	private Date regDate;
+	private int grade;
 	
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 	public String getUserId() {
 		return userId;
 	}

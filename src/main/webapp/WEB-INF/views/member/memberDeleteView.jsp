@@ -34,28 +34,33 @@
 	</script>
 	<body>
 		<section id="container">
-			<form action="/member/memberDelete" method="post">
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userId">아이디</label>
-					<input class="form-control" type="text" id="userId" name="userId" value="${member.userId}" readonly="readonly"/>
+			<div class="container">
+				<div>
+					<%@include file="../board/nav.jsp" %>
 				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userPass">패스워드</label>
-					<input class="form-control" type="password" id="userPass" name="userPass" />
+				<form action="/member/memberDelete" method="post">
+					<div class="form-group has-feedback">
+						<label class="control-label" for="userId">아이디</label>
+						<input class="form-control" type="text" id="userId" name="userId" value="${member.userId}" readonly="readonly"/>
+					</div>
+					<div class="form-group has-feedback">
+						<label class="control-label" for="userPass">패스워드</label>
+						<input class="form-control" type="password" id="userPass" name="userPass" />
+					</div>
+					<div class="form-group has-feedback">
+						<label class="control-label" for="userName">성명</label>
+						<input class="form-control" type="text" id="userName" name="userName" value="${member.userName}" readonly="readonly"/>
+					</div>
+					<div class="form-group has-feedback">
+						<button class="btn btn-success" type="submit" id="submit">회원탈퇴</button>
+						<button class="cencle btn btn-danger" type="button">취소</button>
+					</div>
+				</form>
+				<div>
+					<c:if test="${msg == false}">
+						비밀번호가 맞지 않습니다.
+					</c:if>
 				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userName">성명</label>
-					<input class="form-control" type="text" id="userName" name="userName" value="${member.userName}" readonly="readonly"/>
-				</div>
-				<div class="form-group has-feedback">
-					<button class="btn btn-success" type="submit" id="submit">회원탈퇴</button>
-					<button class="cencle btn btn-danger" type="button">취소</button>
-				</div>
-			</form>
-			<div>
-				<c:if test="${msg == false}">
-					비밀번호가 맞지 않습니다.
-				</c:if>
 			</div>
 		</section>
 		

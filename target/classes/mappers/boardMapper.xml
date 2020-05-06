@@ -21,13 +21,15 @@
 		        TITLE, 
 		        CONTENT,
 		        WRITER, 
-		        REGDATE
+		        REGDATE,
+		        HIT
 		 FROM ( 
 		        SELECT BNO, 
 		               TITLE, 
 		               CONTENT, 
 		               WRITER, 
-		               REGDATE, 
+		               REGDATE,
+		               HIT, 
 		               ROW_NUMBER() OVER(ORDER BY BNO DESC) AS RNUM
 		         FROM MP_BOARD
 		         WHERE 1=1 
@@ -56,7 +58,7 @@
 		</if>
 	</sql>
 	
-    <!-- 조회 블로그 -->
+    <!-- 조회  -->
 	<select id="read" parameterType="int" resultType="com.project.vo.BoardVO">
 		select		BNO
 				 ,	TITLE
@@ -81,5 +83,12 @@
 		  FROM MP_BOARD
 		 WHERE BNO = #{bno}
 	</delete>
+	
+	<!-- 글 조회수 -->
+    <update id="boardHit" parameterType="int">
+    	UPDATE MP_BOARD SET
+    	HIT = HIT+1
+    	WHERE BNO = #{bno}
+    </update>
 	
 </mapper>

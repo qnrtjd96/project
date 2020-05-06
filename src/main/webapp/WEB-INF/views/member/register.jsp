@@ -14,11 +14,11 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			// 취소 
-			$("#cencle").on("click", function(){
+			$(".cencle").on("click", function(){
 				
 				location.href = "/";
 						    
-			})
+			});
 			
 			//회원가입
 			$("#submit").on("click", function(){
@@ -37,9 +37,6 @@
 					$("#userName").focus();
 					return false;
 				}
-				else($("#submit").val()=="ture"){
-					alert("회원가입 성공")
-				}
 			});
 			
 				
@@ -48,24 +45,29 @@
 	</script>
 	<body>
 		<section id="container">
-			<form action="/member/register" method="post">
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userId">아이디</label>
-					<input class="form-control" type="text" id="userId" name="userId" />
-				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userPass">패스워드</label>
-					<input class="form-control" type="password" id="userPass" name="userPass" />
-				</div>
-				<div class="form-group has-feedback">
-					<label class="control-label" for="userName">성명</label>
-					<input class="form-control" type="text" id="userName" name="userName" />
-				</div>
-				<div class="form-group has-feedback">
-					<button class="btn btn-success" type="submit" id="submit">회원가입</button>
-					<button class="cencle btn btn-danger" type="button" id="cencle">취소</button>
-				</div>
-			</form>
+			<div>
+				<%@include file="../board/nav.jsp" %>
+			</div>
+			<div class="container">
+				<form action="/member/register" method="post">
+					<div class="form-group has-feedback">
+						<label class="control-label" for="userId">아이디</label>
+						<input class="form-control" type="text" id="userId" name="userId" />
+					</div>
+					<div class="form-group has-feedback">
+						<label class="control-label" for="userPass">패스워드</label>
+						<input class="form-control" type="password" id="userPass" name="userPass" />
+					</div>
+					<div class="form-group has-feedback">
+						<label class="control-label" for="userName">성명</label>
+						<input class="form-control" type="text" id="userName" name="userName" />
+					</div>
+					<div class="form-group has-feedback">
+						<button class="btn btn-success" type="submit" id="submit">회원가입</button>
+						<button class="cencle btn btn-danger" type="button">취소</button>
+					</div>
+				</form>
+			</div>
 		</section>
 		
 	</body>
