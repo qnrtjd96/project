@@ -3,7 +3,6 @@ package com.project.service;
 import java.util.List;
 
 import com.project.vo.BoardVO;
-import com.project.vo.Criteria;
 import com.project.vo.SearchCriteria;
 
 public interface BoardService {
