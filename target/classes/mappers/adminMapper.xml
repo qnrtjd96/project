@@ -21,4 +21,9 @@
 		 WHERE USERID = #{userId}
 	</delete>
 	
+	<!-- 차트 게시물 총 갯수 -->
+	<select id="boardcount" resultType="com.project.vo.AdminVO">
+		SELECT COUNT(BNO) AS BOARDRESULT 
+		FROM MP_BOARD
+	</select>
 </mapper>

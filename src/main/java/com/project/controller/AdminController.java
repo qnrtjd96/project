@@ -1,15 +1,16 @@
 package com.project.controller;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.AdminService;
 import com.project.vo.AdminVO;
@@ -36,21 +37,46 @@ public class AdminController {
 	
 	// 회원 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(AdminVO adminVO) throws Exception{
+	public String delete(@RequestParam("userId") String userId, AdminVO adminVO) throws Exception{
+		
 		logger.info("delete");
 		
 		service.delete(adminVO);
 		
 		return "redirect:/admin/list";
 	}
+	
+	/*1번째 방법// 회원 삭제
+	@RequestMapping(value = "/delete/{userId}", method = RequestMethod.GET)
+	public String delete(@PathVariable String userId, AdminVO adminVO) throws Exception{
 		
-	// 회원 탈퇴 post
-	@RequestMapping(value="/delete", method = RequestMethod.POST)
-	public String memberDelete(AdminVO adminVO, HttpSession session, RedirectAttributes rttr) throws Exception{
+		System.out.println("넘어오니안넘어오니 넘어와라 얍 ====="+ userId);
 		
-		System.out.println(adminVO.getUserId());
+		logger.info("delete");
+		
 		service.delete(adminVO);
-		session.invalidate();
-		return "redirect:/";
-		}
+		
+		return "redirect:/admin/list";
+	}*/
+	
+	/*	 차트 화면
+		@RequestMapping(value = "/chart", method = RequestMethod.GET)
+		public String boardcount(Model model) throws Exception{
+			logger.info("===========================chart===============================");
+			
+			model.addAttribute("boardcount",service.boardcount());
+			
+			return "/admin/chart";*/
+	
+	//차트화면
+	@RequestMapping(value = "/chart/{boardResult}", method = RequestMethod.GET)
+	public ModelAndView chart(@PathVariable int boardResult) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/chart");
+		
+		list=AdminService.boardcount(boardResult);
+		mv.addObject("boardcount","boardResult");
+		
+		return mv;
+	}
 }

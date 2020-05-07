@@ -27,4 +27,10 @@ public class AdminServiceImpl implements AdminService {
 	public void delete(AdminVO adminVO) throws Exception {
 		dao.delete(adminVO);
 	}
+
+	@Override
+	public List<AdminVO> boardcount() throws Exception {
+		
+		return dao.boardcount();
+	}
 }
