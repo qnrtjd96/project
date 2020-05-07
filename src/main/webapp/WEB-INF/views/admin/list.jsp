@@ -18,33 +18,6 @@
 				<h1 style= "font-size: 50;">블로그-관리자</h1>
 			</header>
 			
-			<script type="text/javascript">
-			 $(document).ready(function(){
-				var formObj = $("form[name='memberForm']");
-				
-				// 회원 삭제
-				$(".delete_btn").on("click", function(){
-					var deleteYN = confirm("삭제하시겠습니까?");
-					if(deleteYN == true){
-						
-					formObj.attr("action", "/admin/delete");
-					formObj.attr("method", "post");
-					formObj.submit();
-						
-					}
-				});
-			}); 
-			 
-			 
-			
-			/* function deleteUser(String userId){
-				var deleteYN = confirm("삭제하시겠습니까?");
-				if(deleteYN == true){
-					form.submit();	
-				}	
-			}; */
-				
-			</script>
 			
 			<hr />
 			 
@@ -66,12 +39,48 @@
 								<td><c:out value="${list.userName}" /></td>
 								<td><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd"/></td>
 								<td><c:out value="${list.grade}"></c:out></td>
-								<td><button type="button" class="delete_btn btn btn-danger" onclick="deleteUser(${list.userId});">삭제</button></td>
+								<td><button  type="button" class="delete_btn btn btn-danger" id="btnDelete" onclick='deleteUser("${list.userId}");' >삭제</button></td>
 							</tr>
 						</c:forEach>
 					</table>
 				</form>
 			</section>
 		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				
+				var formObj = $("deleteUser"); 
+				/* // 회원 삭제
+				$("#btnDelete").on("click", function(){
+					
+					var deleteYN = confirm("삭제하시겠습니까?");
+					if(deleteYN == true){
+					
+					formObj.attr("action", "/admin/delete");
+					formObj.attr("method", "post");
+					formObj.submit(); 
+						
+					}
+				});
+			});    */
+			 
+			 
+			});
+			
+			  function deleteUser(userId){
+				var deleteYN = confirm("삭제하시겠습니까?");
+				if(deleteYN == true){
+					/* document.memberForm.action = "/admin/delete";
+					document.memberForm.method = "get";
+					document.memberForm.submit(); */
+					// 1번쨰 방법, location.href="/admin/delete/"+userId;
+					/* 2번째방법 */
+					location.href="/admin/delete?userId="+userId;
+					//document.memberForm.submit();	
+					}	
+			}
+			
+				
+			</script>
 	</body>
 </html>

@@ -27,5 +27,12 @@ public class AdminDAOImpl implements AdminDAO {
 	public void delete(AdminVO adminVO) throws Exception {
 		sqlSession.delete("adminMapper.delete", adminVO);
 	}
+	
+	//게시물 총 개수
+	@Override
+	public List<AdminVO> boardcount() throws Exception {
+		
+		return sqlSession.selectList("adminMapper.boardcount");
+	}
 
 }

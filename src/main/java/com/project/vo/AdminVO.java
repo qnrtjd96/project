@@ -9,7 +9,14 @@ public class AdminVO {
 	private String userName;
 	private Date regDate;
 	private int grade;
+	private int boardResult;
 	
+	public int getBOARDRESULT() {
+		return boardResult;
+	}
+	public void setBOARDRESULT(int boardResult) {
+		this.boardResult = boardResult;
+	}
 	public int getGrade() {
 		return grade;
 	}
