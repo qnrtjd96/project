@@ -13,5 +13,5 @@ public interface AdminDAO {
 	public void delete(AdminVO AdminVO) throws Exception;
 	
 	// 회원 목록 조회
-	public List<AdminVO> boardcount() throws Exception;
+	public List<AdminVO> boardcount(int boardResult) throws Exception;
 }

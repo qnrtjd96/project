@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,13 +68,11 @@ public class AdminController {
 			return "/admin/chart";*/
 	
 	//차트화면
-	@RequestMapping(value = "/chart/{boardResult}", method = RequestMethod.GET)
-	public ModelAndView chart(@PathVariable int boardResult) throws Exception{
+	@RequestMapping(value = "/chart", method = RequestMethod.GET)
+	public ModelAndView chart(@RequestParam("boardResult") int boardResult, Model model ) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/admin/chart");
-		
-		list=AdminService.boardcount(boardResult);
-		mv.addObject("boardcount","boardResult");
+		mv.addObject("model",model);
 		
 		return mv;
 	}

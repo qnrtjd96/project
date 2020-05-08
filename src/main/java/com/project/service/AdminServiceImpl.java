@@ -29,8 +29,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<AdminVO> boardcount() throws Exception {
+	public List<AdminVO> boardcount(int boardResult) throws Exception {
 		
-		return dao.boardcount();
+		return dao.boardcount(boardResult);
 	}
 }
