@@ -29,13 +29,13 @@
   <div class="collapse navbar-collapse" id="navbarsExample02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="../board/list" style="font-size: 2vmin;">글 목록<span class="sr-only"></span></a>
+        <a class="nav-link" href="../board/list" style="font-size: 2vmin;">■글 목록<span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/admin/chart" style="font-size: 2vmin;">통계<span class="sr-only"></span></a>
+        <a class="nav-link" href="/admin/chart" style="font-size: 2vmin;">■통계<span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/admin/list" style="font-size: 2vmin;">회원조회<span class="sr-only"></span></a>
+        <a class="nav-link" href="/admin/list" style="font-size: 2vmin;">■회원조회<span class="sr-only"></span></a>
       </li>
 	  	<c:if test="${member.grade == 1 }">
 		  <li class="nav-item active">

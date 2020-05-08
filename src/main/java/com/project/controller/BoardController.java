@@ -35,8 +35,7 @@ public class BoardController {
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "/board/writeView", method = RequestMethod.GET)
 	public void writeView() throws Exception{
-		logger.info("writeView");
-		
+		logger.info("writeView");	
 	}
 	
 	// 게시판 글 작성
@@ -187,5 +186,17 @@ public class BoardController {
 		rttr.addAttribute("keyword", scri.getKeyword());
 		
 		return "redirect:/board/readView";
+	}
+	
+	// 게시판 글 작성 화면
+	@RequestMapping(value = "/covid-19/clinic", method = RequestMethod.GET)
+	public void clinic() throws Exception{
+		logger.info("clinic");	
+	}
+	
+	// 게시판 글 작성 화면
+	@RequestMapping(value = "/covid-19/mask", method = RequestMethod.GET)
+	public void mask() throws Exception{
+		logger.info("mask");	
 	}
 }

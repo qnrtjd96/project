@@ -29,26 +29,29 @@
   <div class="collapse navbar-collapse" id="navbarsExample02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/board/list" style="font-size: 2vmin;">글 목록<span class="sr-only"></span></a>
+        <a class="nav-link" href="/board/list" style="font-size: 2vmin;">■글목록<span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/board/writeView" style="font-size: 2vmin;">글 작성하기<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/board/writeView" style="font-size: 2vmin;">■글 작성<span class="sr-only">(current)</span></a>
       </li>
-	      <li class="nav-item active">
-	        <c:if test="${member.grade == null}"><a href="/" class="nav-link" style="font-size: 2vmin;">로그인</a></c:if>
-			<c:if test="${member.grade == 0}"><a href="/member/logout" class="nav-link" style="font-size: 2vmin;">로그아웃</a></c:if>
-		  </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../covid19/clinic2" style="font-size: 2vmin;">■코로나 진료소<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../covid19/mask" style="font-size: 2vmin;">■마스크 판매처 현황<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <c:if test="${member.grade == null}"><a href="/" class="nav-link" style="font-size: 2vmin;">■로그인</a></c:if>
+		<c:if test="${member.grade == 0}"><a href="/member/logout" class="nav-link" style="font-size: 2vmin;">■로그아웃</a></c:if>
+	  </li>
 	  	<c:if test="${member.grade == 1 }">
 		  <li class="nav-item active">
-			<c:if test="${member.grade != 0}"><a href="/member/logout" class="nav-link" style="font-size: 2vmin;">관리자로그아웃</a></c:if>
+			<c:if test="${member.grade != 0}"><a href="/member/logout" class="nav-link" style="font-size: 2vmin;">■관리자로그아웃</a></c:if>
 		  </li>
 	  	</c:if>
 		<li class="nav-item active">
-			<c:if test="${member.grade == 1}"><a href="/admin/list" class="nav-link" style="font-size: 2vmin;">관리자 화면</a></c:if>
+			<c:if test="${member.grade == 1}"><a href="/admin/list" class="nav-link" style="font-size: 2vmin;">■관리자 화면</a></c:if>
 		</li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#" style="font-size: 2vmin;">Link</a>
-      </li>
     </ul>
   </div>
 </nav>
