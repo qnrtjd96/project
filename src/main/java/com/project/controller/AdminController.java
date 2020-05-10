@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.AdminService;
 import com.project.vo.AdminVO;
@@ -34,16 +33,6 @@ public class AdminController {
 		
 	}
 	
-	// 회원 삭제
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(@RequestParam("userId") String userId, AdminVO adminVO) throws Exception{
-		
-		logger.info("delete");
-		
-		service.delete(adminVO);
-		
-		return "redirect:/admin/list";
-	}
 	
 	/*1번째 방법// 회원 삭제
 	@RequestMapping(value = "/delete/{userId}", method = RequestMethod.GET)
@@ -58,22 +47,33 @@ public class AdminController {
 		return "redirect:/admin/list";
 	}*/
 	
-	/*	 차트 화면
+	// 회원 삭제
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(@RequestParam("userId") String userId, AdminVO adminVO) throws Exception{
+		
+		logger.info("delete");
+		
+		service.delete(adminVO);
+		
+		return "redirect:/admin/list";
+	}
+	
+	    //차트 화면
 		@RequestMapping(value = "/chart", method = RequestMethod.GET)
-		public String boardcount(Model model) throws Exception{
-			logger.info("===========================chart===============================");
+		public String boardcount(Model model, AdminVO vo) throws Exception{
 			
-			model.addAttribute("boardcount",service.boardcount());
+			model.addAttribute("boardcount",service.boardcount(vo));
 			
-			return "/admin/chart";*/
+			return "/admin/chart";
 	
 	//차트화면
-	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-	public ModelAndView chart(@RequestParam("boardResult") int boardResult, Model model ) throws Exception{
+	/*@RequestMapping(value = "/chart/{boardresult}", method = RequestMethod.GET)
+	public ModelAndView list(@PathVariable int boardresult, AdminVO vo) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/admin/chart");
-		mv.addObject("model",model);
+		mv.addObject("boardresult", boardresult);
 		
-		return mv;
+		return mv; */
+			
 	}
 }
