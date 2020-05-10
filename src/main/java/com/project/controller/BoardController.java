@@ -187,16 +187,4 @@ public class BoardController {
 		
 		return "redirect:/board/readView";
 	}
-	
-	// 게시판 글 작성 화면
-	@RequestMapping(value = "/covid-19/clinic", method = RequestMethod.GET)
-	public void clinic() throws Exception{
-		logger.info("clinic");	
-	}
-	
-	// 게시판 글 작성 화면
-	@RequestMapping(value = "/covid-19/mask", method = RequestMethod.GET)
-	public void mask() throws Exception{
-		logger.info("mask");	
-	}
 }

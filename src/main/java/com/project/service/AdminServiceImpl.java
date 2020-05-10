@@ -27,10 +27,11 @@ public class AdminServiceImpl implements AdminService {
 	public void delete(AdminVO adminVO) throws Exception {
 		dao.delete(adminVO);
 	}
-
+	
+	//게시물 총 개수
 	@Override
-	public List<AdminVO> boardcount(int boardResult) throws Exception {
+	public List<AdminVO> boardcount(AdminVO vo) throws Exception {
 		
-		return dao.boardcount(boardResult);
+		return dao.boardcount(vo);
 	}
 }
