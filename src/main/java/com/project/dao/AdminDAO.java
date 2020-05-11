@@ -13,6 +13,6 @@ public interface AdminDAO {
 	public void delete(AdminVO AdminVO) throws Exception;
 	
 	// 게시물 총 개수
-	public List<AdminVO> boardcount(AdminVO vo) throws Exception;
+	public int boardcount() throws Exception;
 
 }

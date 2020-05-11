@@ -54,11 +54,10 @@
 					</div>
 				</c:if>
 				<c:if test="${member != null }">
-					<div class="form-group">
-						<p>${member.userId}님 환영 합니다.</p>
-						<button id="memberUpdateBtn" type="button" class="btn btn-success">회원정보수정</button>
-						<button id="memberdeleteBtn" type="button" class="btn btn-success">회원정보삭제</button>
-						<button id="logoutBtn" type="button" class="cencle btn btn-danger">로그아웃</button>
+					<div class="form-group" style="text-align: center; font-size: 50px;">
+						<p style="">${member.userId}님 어떤거 하시겠습니까?</p>
+						<button id="memberUpdateBtn" type="button" class="btn btn-success" style="text-align: center; font-size: 30px;">정보수정하기</button>
+						<button id="memberdeleteBtn" type="button" class="btn btn-success" style="text-align: center; font-size: 30px;">회원탈퇴하기</button>
 					</div>
 				</c:if>
 				<c:if test="${msg == false}">

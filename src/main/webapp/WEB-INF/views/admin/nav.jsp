@@ -39,12 +39,9 @@
       </li>
 	  	<c:if test="${member.grade == 1 }">
 		  <li class="nav-item active">
-			<c:if test="${member.grade != 0}"><a href="/member/logout" class="nav-link" style="font-size: 2vmin;">관리자로그아웃</a></c:if>
+			<c:if test="${member.grade != 0}"><a href="/member/logout" class="nav-link" style="font-size: 2vmin;">■관리자로그아웃</a></c:if>
 		  </li>
 	  	</c:if>
-      <li class="nav-item active">
-        <a class="nav-link" href="#" style="font-size: 2vmin;">Link</a>
-      </li>
     </ul>
   </div>
 </nav>

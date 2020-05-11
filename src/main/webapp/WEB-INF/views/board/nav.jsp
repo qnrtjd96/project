@@ -21,7 +21,7 @@
 
 <body>
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand" href="/board/list" style="font-size: 18px; padding-top: 1.2rem; !important">KANGSAN.COM</a>
+  <a class="navbar-brand" href="../" style="font-size: 18px; padding-top: 1.2rem; !important">KANGSAN.COM</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -38,7 +38,7 @@
         <a class="nav-link" href="../covid19/clinic2" style="font-size: 2vmin;">■코로나 진료소<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="../covid19/mask" style="font-size: 2vmin;">■마스크 판매처 현황<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="../covid19/mask" style="font-size: 2vmin;">■마스크 판매처<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <c:if test="${member.grade == null}"><a href="/" class="nav-link" style="font-size: 2vmin;">■로그인</a></c:if>

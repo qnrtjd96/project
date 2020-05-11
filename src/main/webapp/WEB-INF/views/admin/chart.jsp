@@ -56,7 +56,7 @@
 			  
 	          var data = google.visualization.arrayToDataTable([
 		          ['Task', 'Hours per Day'],
-		          ['게시글',     ${boardcount}],
+		          ['게시글',     $('#board').val()],
 		          ['댓글',      reply],
 		          ['회원수',     member],
 	          ]);
@@ -70,8 +70,8 @@
 	        /* 차트 그리기  div객체에 맵핑시킴(piechart_3d) */
 	        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
 	        chart.draw(data, options);
-	      }
-	})
+	      };
+	});
     </script>
 </body>
 </html>

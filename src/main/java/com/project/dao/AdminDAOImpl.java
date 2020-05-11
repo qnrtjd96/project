@@ -18,7 +18,7 @@ public class AdminDAOImpl implements AdminDAO {
 	//회원목록 조회
 	@Override
 	public List<AdminVO> list() throws Exception {
-
+		
 		return sqlSession.selectList("adminMapper.list");
 	}
 	
@@ -30,9 +30,10 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	//게시물 총 개수
 	@Override
-	public List<AdminVO> boardcount(AdminVO vo) throws Exception {
+	public int boardcount() throws Exception {
 		
-		return sqlSession.selectList("adminMapper.boardcount", vo);
+		System.out.println("vo===========");
+		return sqlSession.selectOne("adminMapper.boardcount");
 	}
 
 }

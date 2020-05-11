@@ -13,6 +13,6 @@ public interface AdminService {
 	public void delete(AdminVO	adminVO) throws Exception;
 	
 	// 게시물 총개수
-	public List<AdminVO> boardcount(AdminVO vo) throws Exception;
+	public int boardcount() throws Exception;
 
 }

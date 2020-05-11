@@ -56,7 +56,7 @@ public class MemberController {
 			session.setAttribute("member", login);
 		}
 		
-		return "redirect:/";
+		return "redirect:/board/list";
 	}
 	
 	//로그아웃

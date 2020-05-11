@@ -14,13 +14,19 @@ public class covid19Controller {
 	
 	// 코로나 진료소 연결
 	@RequestMapping(value = "/covid19/clinic2", method = RequestMethod.GET)
-	public void clinic() throws Exception{
-		logger.info("clinic");	
+	public void clinic2() throws Exception{
+		logger.info("clinic2");	
 	}
 	
 	// 마스크 판매현황 연결
 	@RequestMapping(value = "/covid19/mask", method = RequestMethod.GET)
 	public void mask() throws Exception{
 		logger.info("mask");	
+		
+	}
+	// 위치정보 받아오기 Test
+	@RequestMapping(value = "/covid19/location", method = RequestMethod.GET)
+	public void location() throws Exception{
+		logger.info("location");	
 	}
 }
