@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.service.AdminService;
 import com.project.vo.AdminVO;
@@ -59,21 +60,23 @@ public class AdminController {
 	}
 	
 	    //차트 화면
-		@RequestMapping(value = "/chart", method = RequestMethod.GET)
+	/*	@RequestMapping(value = "/chart", method = RequestMethod.GET)
 		public String boardcount(Model model, AdminVO vo) throws Exception{
 			
 			model.addAttribute("boardcount",service.boardcount(vo));
+			System.out.println("vo================================" + vo.getboardesult());
 			
-			return "/admin/chart";
+			return "/admin/chart";*/
 	
 	//차트화면
-	/*@RequestMapping(value = "/chart/{boardresult}", method = RequestMethod.GET)
-	public ModelAndView list(@PathVariable int boardresult, AdminVO vo) throws Exception{
+	@RequestMapping(value = "/chart", method = RequestMethod.GET)
+	public ModelAndView list(AdminVO vo) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/admin/chart");
-		mv.addObject("boardresult", boardresult);
-		
-		return mv; */
+		mv.addObject("boardcount", service.boardcount());
+		//mv.addObject("replyresult", AdminService.boardresult(vo));
+		//mv.addObject("memberresult", AdminService.boardresult(vo));
+		mv.setViewName("/admin/chart.jsp");
+		return mv; 
 			
 	}
 }

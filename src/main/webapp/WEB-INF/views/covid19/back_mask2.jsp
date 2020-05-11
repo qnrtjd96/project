@@ -8,13 +8,11 @@
 </head>
 <body>
 	<div id="map" style="width: 100%; height: 100vh;"></div>
-	<input type="hidden" id="mark1" value=""/>
-	<input type="hidden" id="mark2" value=""/>
+	
 	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=92068749f55230080ea930abfa4851b9&libraries=clusterer"></script>
 	<script>
-	var mark1 = $('#mark1').val();
-	var mark2 = $('#mark2').val();
-	const url = 'https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat='+mark1'+&lng='+mark2+'&m=5000';//37.55321&lng=126.972613&m=5000';
+	
+	const url = 'https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=37.55321&lng=126.972613&m=5000';
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 	mapOption = {

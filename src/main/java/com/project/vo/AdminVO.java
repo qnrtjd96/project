@@ -18,7 +18,7 @@ public class AdminVO {
 	public int getboardesult() {
 		return boardresult;
 	}
-	public void setBoardresult(int boardresult) {
+	public void setboardresult(int boardresult) {
 		this.boardresult = boardresult;
 	}
 	public int getBno() {
