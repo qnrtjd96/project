@@ -25,8 +25,20 @@ public class covid19Controller {
 		
 	}
 	// 위치정보 받아오기 Test
-	@RequestMapping(value = "/covid19/location", method = RequestMethod.GET)
-	public void location() throws Exception{
-		logger.info("location");	
+	@RequestMapping(value = "/covid19/back_mask2", method = RequestMethod.GET)
+	public void back_mask2() throws Exception{
+		logger.info("clinic");	
+	}
+	
+	// ip 받아오기 Test
+	@RequestMapping(value = "/covid19/ip", method = RequestMethod.GET)
+	public void ip() throws Exception{
+		logger.info("ip");	
+	}
+	
+	// 어느 브라우저로 들어왔나  Test
+	@RequestMapping(value = "/covid19/browser", method = RequestMethod.GET)
+	public void browser() throws Exception{
+		logger.info("ip");	
 	}
 }

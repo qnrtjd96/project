@@ -15,7 +15,7 @@ public class AdminVO {
 	private String title;
 	private String content;
 	private String writer;
-	public int getboardesult() {
+	public int getboardresult() {
 		return boardresult;
 	}
 	public void setboardresult(int boardresult) {

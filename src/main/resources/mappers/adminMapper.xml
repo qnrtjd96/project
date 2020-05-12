@@ -22,7 +22,7 @@
 	</delete>
 	
 	<!-- 차트 게시물 총 갯수 -->
-	<select id="boardcount">
+	<select id="boardcount" resultType="com.project.vo.AdminVO">
 		SELECT COUNT(BNO) AS BOARDRESULT 
 		FROM MP_BOARD
 	</select>

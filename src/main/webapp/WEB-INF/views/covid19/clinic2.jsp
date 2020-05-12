@@ -8,10 +8,65 @@
 
 </head>
 <body>
+	<div>
+		<%@include file="nav.jsp" %>
+	</div>
 	<div id="map" style="width: 100%; height: 100vh;"></div>
 
 	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=92068749f55230080ea930abfa4851b9&libraries=clusterer"></script>
 	<script>
+	function getBrowserType() {
+				var agt = navigator.userAgent.toLowerCase();
+				if (agt.indexOf("chrome") != -1) {
+					return 'Chrome';
+				}
+				if (agt.indexOf("opera") != -1) {
+					return 'Opera';
+				}
+				if (agt.indexOf("staroffice") != -1) {
+					return 'Star Office';
+				}
+				if (agt.indexOf("webtv") != -1) {
+					return 'WebTV';
+				}
+				if (agt.indexOf("beonex") != -1) {
+					return 'Beonex';
+				}
+				if (agt.indexOf("chimera") != -1) {
+					return 'Chimera';
+				}
+				if (agt.indexOf("netpositive") != -1) {
+					return 'NetPositive';
+				}
+				if (agt.indexOf("phoenix") != -1) {
+					return 'Phoenix';
+				}
+				if (agt.indexOf("firefox") != -1) {
+					return 'Firefox';
+				}
+				if (agt.indexOf("safari") != -1) {
+					return 'Safari';
+				}
+				if (agt.indexOf("skipstone") != -1) {
+					return 'SkipStone';
+				}
+				if (agt.indexOf("msie") != -1) {
+					return 'Internet Explorer';
+				}
+				if (agt.indexOf("rv:11.0") != -1) {
+					return 'Internet Explorer';
+				}
+				if (agt.indexOf("netscape") != -1) {
+					return 'Netscape';
+				}
+				if (agt.indexOf("mozilla/5.0") != -1) {
+					return 'Mozilla';
+				}
+				
+			}
+			var str = getBrowserType();
+			alert(str + "으로 접속하셧습니다.");
+	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		mapOption = {
 			center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
@@ -457,15 +512,7 @@
 			var positions = [ {
 				title : hospital[k],
 				latlng : new kakao.maps.LatLng(lat[k], lng[k])
-			} /* 
-			    {
-			        title: '삼성서울병원', 
-			        latlng: new kakao.maps.LatLng(37.49034493, 127.0895905)
-			    },
-			    {
-			        title: '연세대학교의과대학강남세브란스병원', 
-			        latlng: new kakao.maps.LatLng(37.49280628, 127.0463103)
-			    },
+			} /*
 			    {
 			        title: '강동경희대학교의대병원',
 			        latlng: new kakao.maps.LatLng(37.55294144, 127.1572574)
