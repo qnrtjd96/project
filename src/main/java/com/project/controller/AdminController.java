@@ -70,7 +70,7 @@ public class AdminController {
 	
 	//차트화면
 	@RequestMapping(value = "/chart", method = RequestMethod.GET)
-	public ModelAndView list(AdminVO vo) throws Exception{
+	public ModelAndView list() throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("boardcount", service.boardcount());
 		//mv.addObject("replyresult", AdminService.boardresult(vo));

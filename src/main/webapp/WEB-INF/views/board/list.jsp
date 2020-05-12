@@ -68,6 +68,10 @@
 									 self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 								 });
 							 });   
+							 
+							 var ua = window.navigator.userAgent;
+							 document.write(ua);
+							 
 						</script>
 					</div>
 					<div class="col-md-offset-3">

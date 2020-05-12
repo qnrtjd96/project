@@ -32,7 +32,6 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public int boardcount() throws Exception {
 		
-		System.out.println("vo===========");
 		return sqlSession.selectOne("adminMapper.boardcount");
 	}
 
