@@ -25,8 +25,8 @@ public class covid19Controller {
 		
 	}
 	// 위치정보 받아오기 Test
-	@RequestMapping(value = "/covid19/back_mask2", method = RequestMethod.GET)
-	public void back_mask2() throws Exception{
+	@RequestMapping(value = "/covid19/mask2", method = RequestMethod.GET)
+	public void mask2() throws Exception{
 		logger.info("clinic");	
 	}
 	

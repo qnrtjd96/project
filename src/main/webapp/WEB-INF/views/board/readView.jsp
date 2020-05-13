@@ -30,11 +30,14 @@
 				
 				var deleteYN = confirm("삭제하시겠습니까?");
 				if(deleteYN == true){
-					
-				formObj.attr("action", "/board/delete");
-				formObj.attr("method", "post");
-				formObj.submit();
-					
+					if(replyList.writer != 0){
+						alert("댓글이 있어서 삭제가 불가능합니다.")
+					}
+					if(replyList.writer == 0 ){
+						formObj.attr("action", "/board/delete");
+						formObj.attr("method", "post");
+						formObj.submit();
+					}
 				}
 			})
 			
@@ -77,7 +80,7 @@
 	<body>
 		<div class="container">
 			<header>
-				<h1> 블로그</h1>
+				<h1 style="font-size: -webkit-xxx-large;">project</h1>
 			</header>
 			<hr />
 			 

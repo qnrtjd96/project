@@ -33,30 +33,37 @@
 				}
 				alert(${member.userId} + "님 회원정보 수정이 완료되었습니다.");
 			});
-		})
+		});
 	</script>
 	<body>
 		<section id="container">
 			<div class="container">
+			 <header>
+				<h1 style="font-size: -webkit-xxx-large;">project</h1>
+			 </header>
+			 <hr />
+			 
 			 <div>
 				<%@include file="../board/nav.jsp" %>
 			 </div>
 				<form action="/member/memberUpdate" method="post">
 					<div class="form-group has-feedback">
-						<label class="control-label" for="userId">아이디</label>
-						<input class="form-control" type="text" id="userId" name="userId" value="${member.userId}" readonly="readonly"/>
+						<label class="control-label" for="userId" style="font-size: 18px;">아이디</label>
+						<input class="form-control" type="text" id="userId" name="userId" value="${member.userId}" readonly="readonly" style="height: calc(2.25rem + 10px);"/>
 					</div>
 					<div class="form-group has-feedback">
-						<label class="control-label" for="userPass">패스워드</label>
-						<input class="form-control" type="password" id="userPass" name="userPass" />
+						<label class="control-label" for="userPass" style="font-size: 18px;">패스워드</label>
+						<input class="form-control" type="password" id="userPass" name="userPass" style="height: calc(2.25rem + 10px);"/>
 					</div>
 					<div class="form-group has-feedback">
-						<label class="control-label" for="userName">성명</label>
-						<input class="form-control" type="text" id="userName" name="userName" value="${member.userName}"/>
+						<label class="control-label" for="userName" style="font-size: 18px;">성명</label>
+						<input class="form-control" type="text" id="userName" name="userName" value="${member.userName}" style="height: calc(2.25rem + 10px);"/>
 					</div>
-					<div class="form-group has-feedback">
-						<button class="btn btn-success" type="submit" id="submit">회원정보수정</button>
-						<button class="cencle btn btn-danger" type="button">취소</button>
+					<div class="form-group has-feedback" style="margin-top: 30;">
+						<button class="btn btn-success btn-lg btn-block" type="submit" id="submit">회원정보수정</button>
+					</div>
+					<div class="form-group has-feedback" style="margin-top: 10;">
+						<button class="cencle btn btn-danger btn-lg btn-block" type="button">취소</button>
 					</div>
 				</form>
 			</div>

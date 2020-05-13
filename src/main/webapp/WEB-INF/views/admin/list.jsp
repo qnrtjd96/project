@@ -15,10 +15,8 @@
 	<body>
 		<div class="container">
 			<header>
-				<h1 style= "font-size: 50;">블로그-관리자</h1>
+				<h1 style="font-size: -webkit-xxx-large;">project-manager</h1>
 			</header>
-			
-			
 			<hr />
 			 
 			<div>

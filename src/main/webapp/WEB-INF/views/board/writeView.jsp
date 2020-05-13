@@ -39,8 +39,10 @@
 	  <article>
 		<div id="root" class="container">
 			<header>
-				<h1> 블로그</h1>
+				<h1 style="font-size: -webkit-xxx-large;">project</h1>
 			</header>
+			<hr />
+			
 			<div>	
 				<%@include file="nav.jsp" %>
 			</div>
