@@ -15,10 +15,8 @@
 	<body>
 		<div class="container">
 			<header>
-				<h1 style= "font-size: 50;">블로그-관리자</h1>
+				<h1 style="font-size: -webkit-xxx-large;">project-manager</h1>
 			</header>
-			
-			
 			<hr />
 			 
 			<div>
@@ -29,15 +27,13 @@
 				<form role="form" method="get" name="memberForm">
 					<table class="table table-hover">
 						<thead>
-							<tr><th>아이디</th><th>비밀번호</th><th>이름</th><th>등록일</th><th>등급</th><th>삭제</th></tr>
-						</thead>
-						
+							<tr><th>아이디</th><th>비밀번호</th><th>이름</th><th>회원등급</th><th>삭제</th></tr>
+						</thead>	
 						<c:forEach items="${list}" var = "list">
 							<tr>
 								<td><c:out value="${list.userId}" /></td>
 								<td><c:out value="${list.userPass}" /></td>
 								<td><c:out value="${list.userName}" /></td>
-								<td><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd"/></td>
 								<td><c:out value="${list.grade}"></c:out></td>
 								<td><button  type="button" class="delete_btn btn btn-danger" id="btnDelete" onclick='deleteUser("${list.userId}");' >삭제</button></td>
 							</tr>

@@ -77,6 +77,6 @@ public class AdminController {
 		//mv.addObject("memberresult", AdminService.boardresult(vo));
 		mv.setViewName("/admin/chart.jsp");
 		return mv; 
-			
-	}
+				
+		}
 }

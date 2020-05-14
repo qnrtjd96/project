@@ -10,7 +10,14 @@ public class BoardVO {
 	private String writer;
 	private Date regdate; 
 	private int hit;
+	private String userName; //게시글 회원이름 = 게시글 작성자
 	 
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getHit() {
 		return hit;
 	}

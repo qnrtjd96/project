@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.service.MemberService;
@@ -35,11 +36,21 @@ public class MemberController {
 		@RequestMapping(value = "/register", method = RequestMethod.POST)
 		public String postRegister(MemberVO vo) throws Exception {
 			logger.info("post register");
-			
-			service.register(vo);
-			
+			int result = service.idChk(vo);
+			try {
+				if(result == 1) {
+					return "/member/register";
+				}else if(result == 0) {
+					service.register(vo);
+				}
+				// 요기에서~ 입력된 아이디가 존재한다면 -> 다시 회원가입 페이지로 돌아가기 
+				// 존재하지 않는다면 -> register
+			} catch (Exception e) {
+				throw new RuntimeException();
+			}
 			return "redirect:/";
-	}
+		}
+	
 	
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -110,5 +121,13 @@ public class MemberController {
 		service.memberDelete(vo);
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	// 아이디 중복 체크
+	@ResponseBody
+	@RequestMapping(value="/idChk", method = RequestMethod.POST)
+	public int idChk(MemberVO vo) throws Exception {
+		int result = service.idChk(vo);
+		return result;
 	}
 }

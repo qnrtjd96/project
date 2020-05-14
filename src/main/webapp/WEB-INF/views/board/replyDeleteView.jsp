@@ -28,35 +28,36 @@
 		
 	</script>
 	<body>
-	
-		<div id="root">
-			<header>
-				<h1> 블로그</h1>
-			</header>
-			<hr />
-			 
-			<div>
-				<%@include file="nav.jsp" %>
-			</div>
-			<hr />
-			
-			<section id="container">
-				<form name="updateForm" role="form" method="post" action="/board/replyDelete">
-					<input type="hidden" name="bno" value="${replyDelete.bno}" readonly="readonly"/>
-					<input type="hidden" id="rno" name="rno" value="${replyDelete.rno}" />
-					<input type="hidden" id="page" name="page" value="${scri.page}"> 
-					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
-					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
-						
+		<section id="container">
+			<div class="container">
+				<div id="root">
+					<header>
+						<h1 style="font-size: -webkit-xxx-large;">project</h1>
+					</header>
+					<hr />
+					 
 					<div>
-						<p>삭제 하시겠습니까?</p>
-						<button type="submit" class="delete_btn">예 삭제합니다.</button>
-						<button type="button" class="cancel_btn">아니오. 삭제하지 않습니다.</button>
+						<%@include file="nav.jsp" %>
 					</div>
-				</form>
-			</section>
-			<hr />
-		</div>
+					<section id="container">
+						<form name="updateForm" role="form" method="post" action="/board/replyDelete">
+							<input type="hidden" name="bno" value="${replyDelete.bno}" readonly="readonly"/>
+							<input type="hidden" id="rno" name="rno" value="${replyDelete.rno}" />
+							<input type="hidden" id="page" name="page" value="${scri.page}"> 
+							<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+							<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
+							<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+								
+							<div>
+								<p style="font-size: 25px;">삭제 하시겠습니까?</p>
+								<button type="submit" class="delete_btn" style="font-size: 15px;">예 삭제합니다.</button>
+								<button type="button" class="cancel_btn" style="font-size: 15px;">아니오. 삭제하지 않습니다.</button>
+							</div>
+						</form>
+					</section>
+					
+				</div>
+			</div>
+		</section>
 	</body>
 </html>

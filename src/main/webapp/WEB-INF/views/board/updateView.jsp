@@ -48,7 +48,7 @@
 	
 		<div id="root">
 			<header>
-				<h1> 블로그</h1>
+				<h1 style="font-size: -webkit-xxx-large;">project</h1>
 			</header>
 			<hr />
 			 
@@ -82,7 +82,7 @@
 							<tr>
 								<td>
 									<label for="regdate">작성날짜</label>
-									<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/>					
+									<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd a hh:mm"/>					
 								</td>
 							</tr>		
 						</tbody>			

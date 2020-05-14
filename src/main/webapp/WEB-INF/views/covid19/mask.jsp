@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>마스크 재고현황 조회</title>
+<title>공공마스크를 입고한 약국조회</title>
 </head>
 <body>
 	<div>
@@ -15,8 +15,59 @@
 	<input type="text" id="mark2" value= position.coords.longitude> -->
 	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=92068749f55230080ea930abfa4851b9&libraries=clusterer"></script>
 	<script>
-	/* var mark1 = $('#mark1').val();
-	var mark2 = $('#mark2').val(); */ 
+	
+	//브라우저 체크
+	function getBrowserType() {
+		var agt = navigator.userAgent.toLowerCase();
+		if (agt.indexOf("chrome") != -1) {
+			return 'Chrome';
+		}
+		if (agt.indexOf("opera") != -1) {
+			return 'Opera';
+		}
+		if (agt.indexOf("staroffice") != -1) {
+			return 'Star Office';
+		}
+		if (agt.indexOf("webtv") != -1) {
+			return 'WebTV';
+		}
+		if (agt.indexOf("beonex") != -1) {
+			return 'Beonex';
+		}
+		if (agt.indexOf("chimera") != -1) {
+			return 'Chimera';
+		}
+		if (agt.indexOf("netpositive") != -1) {
+			return 'NetPositive';
+		}
+		if (agt.indexOf("phoenix") != -1) {
+			return 'Phoenix';
+		}
+		if (agt.indexOf("firefox") != -1) {
+			return 'Firefox';
+		}
+		if (agt.indexOf("safari") != -1) {
+			return 'Safari';
+		}
+		if (agt.indexOf("skipstone") != -1) {
+			return 'SkipStone';
+		}
+		if (agt.indexOf("msie") != -1) {
+			return 'Internet Explorer';
+		}
+		if (agt.indexOf("rv:11.0") != -1) {
+			return 'Internet Explorer';
+		}
+		if (agt.indexOf("netscape") != -1) {
+			return 'Netscape';
+		}
+		if (agt.indexOf("mozilla/5.0") != -1) {
+			return 'Mozilla';
+		}
+		
+	}
+	var str = getBrowserType();
+	alert(str);
 	
 	const url = 'https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/stores/json?page=1&perPage=5000';
 	

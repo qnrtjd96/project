@@ -39,8 +39,10 @@
 	  <article>
 		<div id="root" class="container">
 			<header>
-				<h1> 블로그</h1>
+				<h1 style="font-size: -webkit-xxx-large;">project</h1>
 			</header>
+			<hr />
+			
 			<div>	
 				<%@include file="nav.jsp" %>
 			</div>
@@ -65,9 +67,8 @@
 								<tr>
 									<td>
 										<label for="writer">작성자</label>
-										<input type="text" id="writer" name="writer" class="chk" title="작성자 를입력하세요"/>
+										<input type="text" id="writer" name="writer" class="chk" title="작성자 를입력하세요" value="${member.userId}" readonly/>
 									</td>
-								<tr>
 									<td>						
 										<button type="submit" class="write_btn">작성</button>
 									</td>
