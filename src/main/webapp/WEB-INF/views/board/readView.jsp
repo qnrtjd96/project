@@ -33,7 +33,7 @@
 					if(replyList.writer != 0){
 						alert("댓글이 있어서 삭제가 불가능합니다.")
 					}
-					if(replyList.writer == 0 ){
+					if(replyList.writer  == 0 ){
 						formObj.attr("action", "/board/delete");
 						formObj.attr("method", "post");
 						formObj.submit();
@@ -97,11 +97,13 @@
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 				</form>
 				
-				<div style="float: right;">
-					<button type="button" class="update_btn btn btn-warning">수정</button>
-					<button type="button" class="delete_btn btn btn-danger">삭제</button>
-					<button type="button" class="list_btn btn btn-primary">목록</button>	
-				</div>
+				<c:if test="${member.userId == read.writer || member.userId== 123}">
+					<div style="float: right;">
+						<button type="button" class="update_btn btn btn-warning">수정</button>
+						<button type="button" class="delete_btn btn btn-danger">삭제</button>
+					</div>
+				</c:if>
+				
 				
 				<div class="form-group">
 					<label for="title" class="col-sm-2 control-label">제목</label>
@@ -117,7 +119,7 @@
 				</div>
 				<div class="form-group">
 					<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
-					<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />	
+					<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd a hh:mm" />	
 				</div>
 				
 				<!-- 댓글 -->
@@ -127,14 +129,14 @@
 							<li>
 								<p>
 								작성자 : ${replyList.writer}<br />
-								작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
+								작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd a hh:mm" />
 								</p>
 								  
 								<p>${replyList.content}</p>
-								<div>
-									<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">수정</button>
-									<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">삭제</button>
-								</div>
+								<c:if test="${member.userId == read.writer || member.userId== 123}">
+										<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">수정</button>
+										<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">삭제</button>
+								</c:if>
 							</li>
 						</c:forEach>   
 					</ol>
@@ -150,7 +152,7 @@
 					<div class="form-group">
 						<label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
 						<div class="col-sm-10">
-							<input type="text" id="writer" name="writer" class="form-control" />
+							<input type="text" id="writer" name="writer" class="form-control" value="${member.userId}"  readonly="readonly"/>
 						</div>
 					</div>
 					

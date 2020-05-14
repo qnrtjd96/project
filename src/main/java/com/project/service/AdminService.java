@@ -14,5 +14,4 @@ public interface AdminService {
 	
 	// 게시물 총개수
 	public int boardcount() throws Exception;
-
 }

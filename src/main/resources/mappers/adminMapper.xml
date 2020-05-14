@@ -25,5 +25,5 @@
 	<select id="boardcount" resultType="com.project.vo.AdminVO">
 		SELECT COUNT(BNO) AS BOARDRESULT 
 		FROM MP_BOARD
-	</select>
+	</select> 
 </mapper>

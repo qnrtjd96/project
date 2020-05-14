@@ -82,7 +82,7 @@
 							<tr>
 								<td>
 									<label for="regdate">작성날짜</label>
-									<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/>					
+									<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd a hh:mm"/>					
 								</td>
 							</tr>		
 						</tbody>			

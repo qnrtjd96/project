@@ -3,6 +3,7 @@ package com.project.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.service.BoardService;
@@ -40,8 +42,15 @@ public class BoardController {
 	
 	// 게시판 글 작성
 	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
-	public String write(BoardVO boardVO) throws Exception{
+	public String write(BoardVO boardVO, HttpSession session) throws Exception{
 		logger.info("write");
+		
+		//session에 저장된 userId를 writer에 저장
+		/*String writer = (String) session.getAttribute("userId");
+		// vo에 writer을 세팅
+		boardVO.setWriter(writer);
+		HttpSession session
+		*/
 		service.write(boardVO);
 		return "redirect:/board/list";
 	}
@@ -63,9 +72,9 @@ public class BoardController {
 			
 		}
 	
-	// 게시판 조회
+	// 게시판 상세보기
 	@RequestMapping(value = "/readView", method = RequestMethod.GET)
-	public String read(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
+	public String read(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model, @RequestParam int bno) throws Exception{
 		logger.info("read");
 		
 		model.addAttribute("read", service.read(boardVO.getBno()));
@@ -91,7 +100,7 @@ public class BoardController {
 	@RequestMapping(value = "/update", method = {RequestMethod.GET,RequestMethod.POST})
 	public String update(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 		logger.info("update");
-		
+	
 		service.update(boardVO);
 		
 		rttr.addAttribute("page", scri.getPage());

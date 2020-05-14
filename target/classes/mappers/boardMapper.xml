@@ -15,7 +15,7 @@
 	                 		  , #{writer}  )
     </insert>
     
-    <!-- 목록 블로그  -->
+    <!-- 게시물 목록  -->
     <select id="listPage" resultType="com.project.vo.BoardVO" parameterType="com.project.vo.SearchCriteria">
 		SELECT  BNO, 
 		        TITLE, 
