@@ -34,5 +34,19 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		return sqlSession.selectOne("adminMapper.boardcount");
 	}
+	
+	//댓글 총 개수
+	@Override
+	public int replycount() throws Exception {
+		
+		return sqlSession.selectOne("adminMapper.replycount");
+	}
+	
+	//회원 총 개수
+	@Override
+	public int membercount() throws Exception {
+		
+		return sqlSession.selectOne("adminMapper.membercount");
+	}
 
 }

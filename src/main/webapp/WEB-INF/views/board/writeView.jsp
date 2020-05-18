@@ -75,7 +75,7 @@
 								</tr>
 							</c:if>
 							<c:if test="${member.userId == null}">
-								<p style="text-align: center; margin-top: 20px;">로그인 후에 작성하실 수 있습니다.</p>
+								<p style="text-align: center; margin-top: 20px; font-size: 30px;">로그인 후에 작성하실 수 있습니다.</p>
 							</c:if>			
 						</tbody>			
 					</table>

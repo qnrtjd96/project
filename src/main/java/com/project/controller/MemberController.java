@@ -54,15 +54,17 @@ public class MemberController {
 	
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
+	public String login(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr, HttpServletRequest request) throws Exception{
 		logger.info("===========================post login==============================");
 		
 		HttpSession session = req.getSession();
 		MemberVO login = service.login(vo);
+		MemberVO.setLoginIp(request.getRemoteAddr());
 		
 		if(login == null) {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
+			return "redirect:/";
 		}else {
 			session.setAttribute("member", login);
 		}

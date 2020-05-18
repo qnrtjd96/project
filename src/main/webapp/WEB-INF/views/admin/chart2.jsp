@@ -21,9 +21,10 @@
 		<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
 		
 		<form name="admin" method="get">
-			<input type="hidden" id="board" value="${boardcount}"/> 
-			<input type="hidden" id="reply" value="${replycount}"/>
-			<input type="hidden" id="member" value="${membercount}"/>
+			<%-- <input type="text" id="board" value="${boardcount}"/> --%>
+			<input type="text" id="board" value="50"/>
+			<input type="text" id="reply" value="50"/>
+			<input type="text" id="member" value="40"/>
 		</form>
 		
 	</div>
@@ -42,23 +43,11 @@
 		  
 	      /* 데이터 세팅하는 곳 */
 	      function drawChart() {
-			  /* 게시글 총 개수  */
-			  var test = $("#board").val();
-			  var board = parseInt(test);
-			  
-			  /* 댓글 총 개수 */
-			  var test2 = $("#reply").val();
-			  var reply = parseInt(test2);
-			  
-			  /* 회원수 총 개수 */
-			  var test3 = $("#member").val();
-			  var member = parseInt(test3)
-			  
 	          var data = google.visualization.arrayToDataTable([
-		          ['목록', '개수'],
-		          ['게시글', board], 
-		          ['댓글', reply],
-		          ['회원수', member]
+		          ['Task', 'Hours per Day'],
+		          ['게시글',     ${result}],
+		          ['댓글',      reply],
+		          ['회원수',     member]
 	          ]);
 			
 	        /* 옵션 세팅 */

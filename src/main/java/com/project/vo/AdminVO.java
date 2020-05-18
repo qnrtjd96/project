@@ -19,7 +19,21 @@ public class AdminVO {
 	private int hit;
 	private int rno;
 	private int boardcount;
+	private int replycount;
+	private int membercount;
 	
+	public int getReplycount() {
+		return replycount;
+	}
+	public void setReplycount(int replycount) {
+		this.replycount = replycount;
+	}
+	public int getMembercount() {
+		return membercount;
+	}
+	public void setMembercount(int membercount) {
+		this.membercount = membercount;
+	}
 	public int getBoardcount() {
 		return boardcount;
 	}

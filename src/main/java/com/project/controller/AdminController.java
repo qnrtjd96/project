@@ -73,10 +73,9 @@ public class AdminController {
 	public ModelAndView list() throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("boardcount", service.boardcount());
-		//mv.addObject("replyresult", AdminService.boardresult(vo));
-		//mv.addObject("memberresult", AdminService.boardresult(vo));
-		mv.setViewName("/admin/chart.jsp");
-		return mv; 
-				
+		mv.addObject("replycount", service.replycount());
+		mv.addObject("membercount", service.membercount());
+		mv.setViewName("/admin/chart");
+		return mv; 		
 		}
 }

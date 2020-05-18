@@ -14,4 +14,10 @@ public interface AdminService {
 	
 	// 게시물 총개수
 	public int boardcount() throws Exception;
+	
+	// 댓글 총개수
+	public int replycount() throws Exception;
+	
+	// 회원 총개수
+	public int membercount() throws Exception;
 }

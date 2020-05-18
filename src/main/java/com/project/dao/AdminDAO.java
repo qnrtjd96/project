@@ -14,5 +14,11 @@ public interface AdminDAO {
 	
 	// 게시물 총 개수
 	public int boardcount() throws Exception;
+	
+	// 댓글 총 개수
+	public int replycount() throws Exception;
+	
+	// 멤버 총 개수
+	public int membercount() throws Exception;
 
 }
