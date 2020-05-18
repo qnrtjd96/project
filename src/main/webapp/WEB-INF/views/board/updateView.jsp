@@ -59,19 +59,20 @@
 			</div>
 			<hr />
 			
+			<div class='table-responsive'>
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/board/update">
 					<input type="hidden" name="bno" value="${update.bno}" readonly="readonly"/>
-					<table>
+					<table class="table table-striped table-sm">
 						<tbody>
 							<tr>
 								<td>
-									<label for="title">제목</label><input type="text" id="title" name="title" classs="chk" title="제목을 입력하세요" value="${update.title}"/>
+									<label for="title">제목</label><input type="text" id="title" name="title" classs="chk" title="제목을 입력하세요" value="${update.title}" style="height: 10%; width: 100%;"/>
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="content">내용</label><textarea id="content" name="content" classs="chk" title="제목을 입력하세요"><c:out value="${update.content}" /></textarea>
+									<label for="content">내용</label><textarea id="content" name="content" classs="chk" title="제목을 입력하세요" style="height: 300; width: 100%;"><c:out value="${update.content}" /></textarea>
 								</td>
 							</tr>
 							<tr>
@@ -88,11 +89,12 @@
 						</tbody>			
 					</table>
 					<div>
-						<button type="submit" class="update_btn">저장</button>
-						<button type="submit" class="cancel_btn">취소</button>
+						<button type="submit" class="update_btn" style="font-size: large;">저장</button>
+						<button type="submit" class="cancel_btn" style="font-size: large;">취소</button>
 					</div>
 				</form>
 			</section>
+			</div>
 			<hr />
 		</div>
 	</body>

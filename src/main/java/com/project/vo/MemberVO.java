@@ -46,5 +46,9 @@ public class MemberVO {
 		return "MemberVO [userId=" + userId + ", userPass=" + userPass + ", userName=" + userName + ", regDate="
 				+ regDate + "]";
 	}
+	public static void setLoginIp(String remoteAddr) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

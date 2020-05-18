@@ -22,8 +22,20 @@
 	</delete>
 	
 	<!-- 차트 게시물 총 갯수 -->
-	<select id="boardcount" resultType="com.project.vo.AdminVO">
+	<select id="boardcount" resultType="int">
 		SELECT COUNT(BNO) AS BOARDRESULT 
 		FROM MP_BOARD
+	</select> 
+	
+	<!-- 차트 게시물 총 갯수 -->
+	<select id="replycount" resultType="int">
+		SELECT COUNT(RNO) AS RELYRESULT
+		FROM MP_REPLY
+	</select> 
+	
+	<!-- 차트 게시물 총 갯수 -->
+	<select id="membercount" resultType="int">
+		SELECT COUNT(USERID) AS MEMBERCOUNT
+		FROM MP_MEMBER
 	</select> 
 </mapper>

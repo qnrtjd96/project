@@ -67,7 +67,7 @@
 		
 	}
 	var str = getBrowserType();
-	alert(str);
+	alert(str + "으로 접속하셧습니다.");
 	
 	const url = 'https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/stores/json?page=1&perPage=5000';
 	

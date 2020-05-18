@@ -39,11 +39,12 @@
 				}
 				var idChkVal = $("#idChk").val();
 				if(idChkVal == "N"){
-					alert("중복확인 버튼을 눌러주세요.");
+					alert("중복 확인을 누르지 않았거나 "+ <br> +"중복된 아이디라 가입이 불가능합니다.");
+					return false;
 				}else if(idChkVal == "Y"){
+					alert("회원가입이 완료되었습니다.")
 					$("#regForm").submit();
 				}
-			alert("회원가입이 완료되었습니다.")
 			})
 		});
 		

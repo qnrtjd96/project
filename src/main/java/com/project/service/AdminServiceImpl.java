@@ -34,4 +34,18 @@ public class AdminServiceImpl implements AdminService {
 		
 		return dao.boardcount();
 	}
+	
+	//댓글 총 개수
+	@Override
+	public int replycount() throws Exception {
+		
+		return dao.replycount();
+	}
+	
+	//회원 총 개수
+	@Override
+	public int membercount() throws Exception {
+		
+		return dao.membercount();
+	}
 }

@@ -30,14 +30,14 @@
 				
 				var deleteYN = confirm("삭제하시겠습니까?");
 				if(deleteYN == true){
-					if(replyList.writer != 0){
+					/* if(replyList.writer != 0){
 						alert("댓글이 있어서 삭제가 불가능합니다.")
-					}
-					if(replyList.writer  == 0 ){
+					} */
+					/* if(replyList.writer  == 0 ){ */
 						formObj.attr("action", "/board/delete");
 						formObj.attr("method", "post");
 						formObj.submit();
-					}
+					//}
 				}
 			})
 			
@@ -50,10 +50,23 @@
 			})
 			
 			$(".replyWriteBtn").on("click", function(){
+				if(fn_valiChk()){
+					return false;
+				}
 				var formObj = $("form[name='replyForm']");
 				formObj.attr("action", "/board/replyWrite");
 				formObj.submit();
 			});
+			
+			function fn_valiChk(){
+				var regForm = $("form[name='replyForm'] .chk").length;
+				for(var i = 0; i<regForm; i++){
+					if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
+						alert($(".chk").eq(i).attr("title"));
+						return true;
+					}
+				}
+			}
 			
 			//댓글 수정 View
 			$(".replyUpdateBtn").on("click", function(){
@@ -87,7 +100,7 @@
 			<div>
 				<%@include file="nav.jsp" %>
 			</div>
-			
+			<c:if test="${member.userId != null}">
 			<section id="container">
 				<form name="readForm" role="form" method="post">
 					<input type="hidden" id="bno" name="bno" value="${read.bno}" />
@@ -97,7 +110,7 @@
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 				</form>
 				
-				<c:if test="${member.userId == read.writer || member.userId== 123}">
+				<c:if test='${member.userId == read.writer or member.userId== 123}'>
 					<div style="float: right;">
 						<button type="button" class="update_btn btn btn-warning">수정</button>
 						<button type="button" class="delete_btn btn btn-danger">삭제</button>
@@ -133,7 +146,7 @@
 								</p>
 								  
 								<p>${replyList.content}</p>
-								<c:if test="${member.userId == read.writer || member.userId== 123}">
+								<c:if test="${member.userId == read.writer or member.userId== 123}">
 										<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">수정</button>
 										<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">삭제</button>
 								</c:if>
@@ -159,7 +172,7 @@
 					<div class="form-group">
 						<label for="content" class="col-sm-2 control-label">댓글 내용</label>
 						<div class="col-sm-10">
-							<input type="text" id="content" name="content" class="form-control"/>
+							<input type="text" id="content" name="content" class="chk form-control" title="내용을 입력해주세요"/>
 						</div>
 					</div>
 					
@@ -170,6 +183,10 @@
 					</div>
 				</form>
 			</section>
+			</c:if>
+			<c:if test="${member.userId == null}">
+				<p style="text-align: center; margin-top: 20px; font-size: 30px;">로그인 후에 게시글을 볼 수 있습니다.</p>
+			</c:if>
 			<hr />
 		</div>
 	</body>
