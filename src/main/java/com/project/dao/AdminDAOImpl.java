@@ -13,19 +13,19 @@ import com.project.vo.AdminVO;
 public class AdminDAOImpl implements AdminDAO {
 
 	@Inject
-	private SqlSession sqlSession;
+	private SqlSession sqlSession; //mybatis 연동을 위해서
 	
 	//회원목록 조회
 	@Override
 	public List<AdminVO> list() throws Exception {
 		
-		return sqlSession.selectList("adminMapper.list");
+		return sqlSession.selectList("adminMapper.list"); //리스트를 뽑아내는 거기 때문에 selectList
 	}
 	
 	//회원 삭제
 	@Override
 	public void delete(AdminVO adminVO) throws Exception {
-		sqlSession.delete("adminMapper.delete", adminVO);
+		sqlSession.delete("adminMapper.delete", adminVO); //리턴할 필요가없고, adminVO안에 담긴값을 삭제하려고 
 	}
 	
 	//게시물 총 개수

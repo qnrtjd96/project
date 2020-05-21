@@ -16,6 +16,7 @@
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
+			//취소버튼을 눌렀을 이동하는 하이퍼링크
 			$(".cancel_btn").on("click", function(){
 				location.href = "/board/readView?bno=${replyUpdate.bno}"
 					   + "&page=${scri.page}"

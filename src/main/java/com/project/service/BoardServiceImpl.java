@@ -56,4 +56,11 @@ public class BoardServiceImpl implements BoardService {
 		
 		dao.delete(bno);
 	}
+	
+	//댓글 게시물 삭제
+	/*@Override
+	public int count() throws Exception {
+		
+		return dao.count();
+	}*/
 }

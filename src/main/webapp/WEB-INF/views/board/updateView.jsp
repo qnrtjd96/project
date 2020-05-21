@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!-- jstl을 사용하기위한 태그 라이브러리 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
@@ -14,6 +16,7 @@
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
+			//취소버튼을 클릭했을때
 			$(".cancel_btn").on("click", function(){
 				event.preventDefault();
 				location.href = "/board/readView?bno=${update.bno}"
@@ -23,6 +26,7 @@
 					   + "&keyword=${scri.keyword}";
 			})
 			
+			//업그레이드 버튼을 클릭했을때
 			$(".update_btn").on("click", function(){
 				if(fn_valiChk()){
 					return false;
@@ -32,12 +36,13 @@
 				formObj.submit();
 			})
 		})
-			
+		
+		//fn_valiChk버튼에 대한 펑션
 		function fn_valiChk(){
 			var updateForm = $("form[name='updateForm'] .chk").length;
-			for(var i = 0; i<updateForm; i++){
-				if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
-					alert($(".chk").eq(i).attr("title"));
+			for(var i = 0; i<updateForm; i++){//반복문
+				if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){ //클래스의 i번째가 공백이거나 null이면
+					alert($(".chk").eq(i).attr("title")); //i번째의 타이틀을 출력한다
 					return true;
 				}
 			}
@@ -72,12 +77,12 @@
 							</tr>	
 							<tr>
 								<td>
-									<label for="content">내용</label><textarea id="content" name="content" classs="chk" title="제목을 입력하세요" style="height: 300; width: 100%;"><c:out value="${update.content}" /></textarea>
+									<label for="content">내용</label><textarea id="content" name="content" classs="chk" title="내용을 입력하세요" style="height: 300; width: 100%;"><c:out value="${update.content}" /></textarea>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<label for="writer">작성자</label><input type="text" id="writer" name="writer" classs="chk" title="제목을 입력하세요" value="${update.writer}" readonly="readonly"/>
+									<label for="writer">작성자</label><input type="text" id="writer" name="writer" classs="chk" title="작성자을 입력하세요" value="${update.writer}" readonly="readonly"/>
 								</td>
 							</tr>
 							<tr>

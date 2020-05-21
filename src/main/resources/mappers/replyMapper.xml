@@ -51,5 +51,11 @@
 		  FROM MP_REPLY
 		 WHERE RNO = #{rno}
 	</select>
+	
+	<!-- 댓글개수  -->
+	<!-- <select id="countReply" resultType="int">
+		SELECT COUNT(*) FROM MP_REPLY
+		 WHERE BNO = #{bno}
+	</select>  -->
   	
 </mapper>

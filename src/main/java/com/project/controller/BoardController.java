@@ -22,26 +22,26 @@ import com.project.vo.PageMaker;
 import com.project.vo.ReplyVO;
 import com.project.vo.SearchCriteria;
 
-@Controller
-@RequestMapping("/board/*")
-public class BoardController {
+@Controller //컨트롤러 어노케이션 선언
+@RequestMapping("/board/*") //리퀘스트 맵핑 선언("/board/전체값")
+public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 
-	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class); //로그 찍기
 	
-	@Inject
+	@Inject//의존성 주입
 	BoardService service;
 	
-	@Inject
+	@Inject //의존성 주입
 	ReplyService replyService;
 	
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "/board/writeView", method = RequestMethod.GET)
 	public void writeView() throws Exception{
-		logger.info("writeView");	
+		logger.info("writeView");	//로그찍기
 	}
 	
 	// 게시판 글 작성
-	@RequestMapping(value = "/board/write", method = RequestMethod.POST)
+	@RequestMapping(value = "/board/write", method = RequestMethod.POST) //작성하고 저장해야되니 post의 값으로보내줌 //단순히 값을 가져오는것이 아니라서 get이 아닌 post로 작성한 것
 	public String write(BoardVO boardVO, HttpSession session) throws Exception{
 		logger.info("write");
 		
@@ -51,36 +51,39 @@ public class BoardController {
 		boardVO.setWriter(writer);
 		HttpSession session
 		*/
-		service.write(boardVO);
-		return "redirect:/board/list";
+		service.write(boardVO); //service에 write보내는대 boardVO에 값을 담는다.
+		return "redirect:/board/list"; //리턴할때는 board/list의 값으로 리턴을 시켜준다.
 	}
 	
 	// 게시판 목록 조회
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-		logger.info("list");
+	@RequestMapping(value = "/list", method = RequestMethod.GET) 
+	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{//리스트메소드에 model 객체에 파라미터값을 넣고 보내는데
+																								  //@ModelAttribute는 속성값을 주입하거나 바인딜 될때에 사용된다. scri가 사용된것은 검색 조건에 활용 하려고 modelAttribute의 선언을 한 것이다.
+		logger.info("list"); //로그를 찍어준다.
 		
-		model.addAttribute("list", service.list(scri));
+		model.addAttribute("list", service.list(scri)); //모델에 list를 뽑아올건대, scri의 값을 넣어온다.
 		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(service.listCount(scri));
+		PageMaker pageMaker = new PageMaker(); //페이징적용
+		pageMaker.setCri(scri); //scri의 값을 세팅한다 뒤에가면 알겟지만 10개씩 세팅(xml에서 알수 있음)
+		pageMaker.setTotalCount(service.listCount(scri)); //totlcount를 service로 보내는데, scri에 값을 담음
 		
-		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("pageMaker", pageMaker); //addAttribute는 pagMaker(2)를 "pageMaker"(1)의 이름으로 추가한다 1페이지메이커로 지정한 이름을 통해서 2를 사용한다.
 		
-		return "board/list";
+		return "board/list"; //조회하고 리턴값을 준다.
 			
 		}
 	
 	// 게시판 상세보기
-	@RequestMapping(value = "/readView", method = RequestMethod.GET)
-	public String read(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model, @RequestParam int bno) throws Exception{
-		logger.info("read");
+	@RequestMapping(value = "/readView", method = RequestMethod.GET) //post가 아닌 get을 씀 단순 보여주기 용도이기 때문에
+	public String read(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model, @RequestParam int bno) throws Exception{// read 메소드 선언 쓸 객체들 선언 
+																																		//bno에 담아서 값을 받아온다 @RequestParam은 값을 받아온다.
+		logger.info("read");//로그 찍기
 		
-		model.addAttribute("read", service.read(boardVO.getBno()));
+		model.addAttribute("read", service.read(boardVO.getBno())); 
+		/*model.addAttribute("count", service.count());*/
 		model.addAttribute("scri", scri);
 		
-		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
+		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno()); 
 		model.addAttribute("replyList", replyList);
 		
 		return "board/readView";
@@ -91,13 +94,13 @@ public class BoardController {
 	public String updateView(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
 		logger.info("updateView");
 		
-		model.addAttribute("update", service.read(boardVO.getBno()));
+		model.addAttribute("update", service.read(boardVO.getBno())); 
 		model.addAttribute("scri", scri);
 		return "board/updateView";
 	}
 	
 	// 게시판 수정
-	@RequestMapping(value = "/update", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/update", method = {RequestMethod.GET,RequestMethod.POST}) //get,post를 같이쓴 방식 이럴때는 get방식의 단점을 보안하기 위헤 RedirectAttributes를 씀, RedirectAttributes는 post방식처럼 보일수는 있겟지만 session을 이용한 다
 	public String update(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 		logger.info("update");
 	
@@ -112,7 +115,7 @@ public class BoardController {
 	}
 
 	// 게시판 삭제
-	@RequestMapping(value = "/delete", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/delete", method = {RequestMethod.GET,RequestMethod.POST}) //위외 동일
 	public String delete(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 		logger.info("delete");
 		

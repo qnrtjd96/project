@@ -39,9 +39,10 @@
 				}
 				var idChkVal = $("#idChk").val();
 				if(idChkVal == "N"){
-					alert("중복 확인을 누르지 않았거나 "+ <br> +"중복된 아이디라 가입이 불가능합니다.");
+					alert("중복 확인을 누르지 않았습니다.");
 					return false;
-				}else if(idChkVal == "Y"){
+				}
+				else if(idChkVal == "Y"){
 					alert("회원가입이 완료되었습니다.")
 					$("#regForm").submit();
 				}
