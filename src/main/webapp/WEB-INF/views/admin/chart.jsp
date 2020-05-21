@@ -28,7 +28,6 @@
 		
 	</div>
 	<script type="text/javascript">
-	
 	$(document).ready(function(){
 		var formObj = $("form[name='admin']");
 	      //최신차트 세팅
@@ -44,7 +43,7 @@
 	      function drawChart() {
 			  /* 게시글 총 개수  */
 			  var test = $("#board").val();
-			  var board = parseInt(test);
+			  var board = parseInt(test); //parseInt 문자열을 수로 바꾸는 함수
 			  
 			  /* 댓글 총 개수 */
 			  var test2 = $("#reply").val();
@@ -63,8 +62,8 @@
 			
 	        /* 옵션 세팅 */
 	        var options = {
-	          title: '총 개수는 누가 많을까?',
-	          is3D: true,
+	          title: '어느 비율이 더 많을까?',
+	          is3D: true, //3d로 나오게하는 것
 	        };
 			
 	        /* 차트 그리기  div객체에 맵핑시킴(piechart_3d) */

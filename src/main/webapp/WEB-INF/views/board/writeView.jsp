@@ -15,6 +15,7 @@
 	</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			//updateView와 동일하다.
 			var formObj = $("form[name='writeForm']");
 			$(".write_btn").on("click", function(){
 				if(fn_valiChk()){
@@ -51,6 +52,7 @@
 				<form name="writeForm" method="post" action="/board/write">
 					<table class="table table-striped table-sm">
 						<tbody>
+							<!-- 로그인한 아이디가 널이면 보여지지않는다. -->
 							<c:if test="${member.userId != null}">
 								<tr>
 									<td>
@@ -74,6 +76,7 @@
 									</td>
 								</tr>
 							</c:if>
+							<!-- 로그인한 아이디가 널이면 밑에 <p>를 출력한다. -->
 							<c:if test="${member.userId == null}">
 								<p style="text-align: center; margin-top: 20px; font-size: 30px;">로그인 후에 작성하실 수 있습니다.</p>
 							</c:if>			

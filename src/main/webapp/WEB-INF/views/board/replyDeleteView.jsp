@@ -16,6 +16,7 @@
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
+			/* 취소버튼을 눌렀을때에 이동할수 있는 하이퍼 링크를 달아준다. */
 			$(".cancel_btn").on("click", function(){
 				location.href = "/board/readView?bno=${replyDelete.bno}"
 					   + "&page=${scri.page}"
@@ -49,9 +50,11 @@
 							<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 								
 							<div>
-								<p style="font-size: 25px;">삭제 하시겠습니까?</p>
+								<p style="font-size: 25px; text-align: center;">삭제 하시겠습니까?</p>
+								<div style="text-align: center;">
 								<button type="submit" class="delete_btn" style="font-size: 15px;">예 삭제합니다.</button>
 								<button type="button" class="cancel_btn" style="font-size: 15px;">아니오. 삭제하지 않습니다.</button>
+								</div>
 							</div>
 						</form>
 					</section>
