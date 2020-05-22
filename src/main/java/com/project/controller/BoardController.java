@@ -3,7 +3,6 @@ package com.project.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.project.service.BoardService;
 import com.project.service.ReplyService;
 import com.project.vo.BoardVO;
-import com.project.vo.PageMaker;
 import com.project.vo.ReplyVO;
 import com.project.vo.SearchCriteria;
 
@@ -42,15 +40,8 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	
 	// 게시판 글 작성
 	@RequestMapping(value = "/board/write", method = RequestMethod.POST) //작성하고 저장해야되니 post의 값으로보내줌 //단순히 값을 가져오는것이 아니라서 get이 아닌 post로 작성한 것
-	public String write(BoardVO boardVO, HttpSession session) throws Exception{
+	public String write(BoardVO boardVO) throws Exception{
 		logger.info("write");
-		
-		//session에 저장된 userId를 writer에 저장
-		/*String writer = (String) session.getAttribute("userId");
-		// vo에 writer을 세팅
-		boardVO.setWriter(writer);
-		HttpSession session
-		*/
 		service.write(boardVO); //service에 write보내는대 boardVO에 값을 담는다.
 		return "redirect:/board/list"; //리턴할때는 board/list의 값으로 리턴을 시켜준다.
 	}
@@ -58,19 +49,10 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	// 게시판 목록 조회
 	@RequestMapping(value = "/list", method = RequestMethod.GET) 
 	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{//리스트메소드에 model 객체에 파라미터값을 넣고 보내는데
-																								  //@ModelAttribute는 속성값을 주입하거나 바인딜 될때에 사용된다. scri가 사용된것은 검색 조건에 활용 하려고 modelAttribute의 선언을 한 것이다.
-		logger.info("list"); //로그를 찍어준다.
+		logger.info("list"); //로그를 찍어준다.														  //@ModelAttribute는 속성값을 주입하거나 바인딜 될때에 사용된다. scri가 사용된것은 검색 조건에 활용 하려고 modelAttribute의 선언을 한 것이다.
 		
-		model.addAttribute("list", service.list(scri)); //모델에 list를 뽑아올건대, scri의 값을 넣어온다.
-		
-		PageMaker pageMaker = new PageMaker(); //페이징적용
-		pageMaker.setCri(scri); //scri의 값을 세팅한다 뒤에가면 알겟지만 10개씩 세팅(xml에서 알수 있음)
-		pageMaker.setTotalCount(service.listCount(scri)); //totlcount를 service로 보내는데, scri에 값을 담음
-		
-		model.addAttribute("pageMaker", pageMaker); //addAttribute는 pagMaker(2)를 "pageMaker"(1)의 이름으로 추가한다 1페이지메이커로 지정한 이름을 통해서 2를 사용한다.
-		
+		service.list(model, scri);
 		return "board/list"; //조회하고 리턴값을 준다.
-			
 		}
 	
 	// 게시판 상세보기
@@ -80,7 +62,6 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 		logger.info("read");//로그 찍기
 		
 		model.addAttribute("read", service.read(boardVO.getBno())); 
-		/*model.addAttribute("count", service.count());*/
 		model.addAttribute("scri", scri);
 		
 		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno()); 
@@ -94,8 +75,7 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	public String updateView(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
 		logger.info("updateView");
 		
-		model.addAttribute("update", service.read(boardVO.getBno())); 
-		model.addAttribute("scri", scri);
+		service.update(boardVO, scri, model, null);
 		return "board/updateView";
 	}
 	
@@ -104,13 +84,9 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	public String update(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 		logger.info("update");
 	
-		service.update(boardVO);
+		service.update(boardVO, scri, rttr, rttr);
 		
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
-		
+
 		return "redirect:/board/list";
 	}
 

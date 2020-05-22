@@ -27,12 +27,7 @@
 			
 			// 삭제
 			$(".delete_btn").on("click", function(){
-				/* var count ="${count}";
 				
-				if(count > 0){
-					alert("댓글이 있는 게시물은 삭제가 불가능 합니다.")
-					return;
-				} */
 				var deleteYN = confirm("삭제하시겠습니까?");
 				if(deleteYN == true){
 						formObj.attr("action", "/board/delete");
