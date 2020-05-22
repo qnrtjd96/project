@@ -34,10 +34,6 @@
 	      google.charts.load("current", {packages:["corechart"]});
 	      //최신차트 로드
 	      google.charts.setOnLoadCallback(drawChart);
-	     /*  30초마다 재갱신
-		  google.charts.setOnLoadCallback(function(){
-		  setInterval(columnChart1(),30000);
-		  } */
 		  
 	      /* 데이터 세팅하는 곳 */
 	      function drawChart() {

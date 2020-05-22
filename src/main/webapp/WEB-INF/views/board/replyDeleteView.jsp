@@ -16,7 +16,7 @@
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
-			/* 취소버튼을 눌렀을때에 이동할수 있는 하이퍼 링크를 달아준다. */
+			/* 취소버튼을 눌렀을때에 (페이징을 유지할 수 있게) 이동할수 있는 하이퍼 링크를 달아준다. */
 			$(".cancel_btn").on("click", function(){
 				location.href = "/board/readView?bno=${replyDelete.bno}"
 					   + "&page=${scri.page}"

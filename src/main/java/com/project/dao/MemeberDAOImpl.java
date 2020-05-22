@@ -16,7 +16,6 @@ public class MemeberDAOImpl implements MemberDAO {
 	//회원가입
 	@Override
 	public void register(MemberVO vo) throws Exception {
-		
 		sql.insert("memberMapper.register", vo);
 	}
 	

@@ -48,7 +48,7 @@
 				if(deleteYN == true){
 					location.href="/admin/delete?userId="+userId;
 					}	
-			}
+				}
 		</script>
 	</body>
 </html>
