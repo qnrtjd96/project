@@ -42,7 +42,7 @@ public class MemberServiceImpl implements MemberService {
 		if(login == null) {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
-			return login;
+			return vo;
 		}else {
 			session.setAttribute("member", login);
 		}

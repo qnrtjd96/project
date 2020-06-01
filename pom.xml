@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.project</groupId>
-	<artifactId>web</artifactId>
-	<name>project</name>
-	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
-	<properties>
-		<java-version>1.8</java-version>
+	<modelVersion>4.0.0</modelVersion><!--pom 모델의 버전  -->
+	<groupId>com.project</groupId><!-- 프로젝트를 생성하는 조직의 고유 아이디를 결정, 일반적으로 도메인 이름을 거꾸로 적음 -->
+	<artifactId>web</artifactId><!-- 프로젝트의 대표이름 이다 -->
+	<name>ROOT</name><!-- 프로젝트이름 -->
+	<packaging>war</packaging><!-- 패키징 유형 (jar, war, ear이 있다) -->
+	<version>1.0.0-BUILD-SNAPSHOT</version><!-- 프로젝트의 현재 버전이다 -->
+	<properties><!--  -->
+		<java-version>1.8</java-version> <!-- 자바의 버전 버전관리시 용의하다 ${java.version} -->
 		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
@@ -22,7 +22,7 @@
 		</repository>
 	</repositories>
 	
-	<dependencies>
+	<dependencies><!-- dependencies 태그 안에는 프로젝트와 의존 관계에 있는 라이브러리를 관리한다. -->
 		<!-- ajax  -->
 		<dependency> 
 		    <groupId>org.codehaus.jackson</groupId> 
@@ -184,7 +184,7 @@
 		<!-- 트랜젝션 END -->
 		 
 	</dependencies>
-	<build>
+	<build><!-- 빌드에 사용될 플러인의 목록 -->
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>

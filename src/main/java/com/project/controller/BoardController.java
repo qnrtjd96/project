@@ -19,7 +19,7 @@ import com.project.service.ReplyService;
 import com.project.vo.BoardVO;
 import com.project.vo.ReplyVO;
 import com.project.vo.SearchCriteria;
-
+ 	
 @Controller //컨트롤러 어노케이션 선언
 @RequestMapping("/board/*") //리퀘스트 맵핑 선언("/board/전체값")
 public class BoardController { //퍼블릭 클레스 컨트롤러 선언
@@ -43,30 +43,30 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	public String write(BoardVO boardVO) throws Exception{
 		logger.info("write");
 		service.write(boardVO); //service에 write보내는대 boardVO에 값을 담는다.
+		
 		return "redirect:/board/list"; //리턴할때는 board/list의 값으로 리턴을 시켜준다.
 	}
+
 	
 	// 게시판 목록 조회
 	@RequestMapping(value = "/list", method = RequestMethod.GET) 
 	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{//리스트메소드에 model 객체에 파라미터값을 넣고 보내는데
-		logger.info("list"); //로그를 찍어준다.														  //@ModelAttribute는 속성값을 주입하거나 바인딜 될때에 사용된다. scri가 사용된것은 검색 조건에 활용 하려고 modelAttribute의 선언을 한 것이다.
+		logger.info("list"); //로그를 찍어준다.														  //@ModelAttribute는 속성값을 주입하거나 바인딜 될때에 사용된다. 
+																								  //SearchCriteria를 사용하는데, SearchCriteria가 Criteria를 상속했기떄문에 원하는 값을 가져올 수 있다.
+		service.list(model, scri);// list에 model과 scri의 값을 보내준다.
 		
-		service.list(model, scri);
 		return "board/list"; //조회하고 리턴값을 준다.
 		}
 	
 	// 게시판 상세보기
 	@RequestMapping(value = "/readView", method = RequestMethod.GET) //post가 아닌 get을 씀 단순 보여주기 용도이기 때문에
-	public String read(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model, @RequestParam int bno) throws Exception{// read 메소드 선언 쓸 객체들 선언 
-																																		//bno에 담아서 값을 받아온다 @RequestParam은 값을 받아온다.
+	public String read(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model, @RequestParam int bno, ReplyVO vo) throws Exception{// read 메소드 선언 쓸 객체들 선언 																											//bno에 담아서 값을 받아온다 @RequestParam은 값을 받아온다.
 		logger.info("read");//로그 찍기
-		
-		model.addAttribute("read", service.read(boardVO.getBno())); 
-		model.addAttribute("scri", scri);
 		
 		List<ReplyVO> replyList = replyService.readReply(boardVO.getBno()); 
 		model.addAttribute("replyList", replyList);
-		
+		service.read(boardVO, scri, model, bno);
+
 		return "board/readView";
 	}
 	
@@ -75,7 +75,9 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	public String updateView(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
 		logger.info("updateView");
 		
-		service.update(boardVO, scri, model, null);
+		model.addAttribute("update", service.read(boardVO, scri, model, boardVO.getBno()));
+		model.addAttribute("scri", scri);
+		
 		return "board/updateView";
 	}
 	
@@ -83,9 +85,8 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	@RequestMapping(value = "/update", method = {RequestMethod.GET,RequestMethod.POST}) //get,post를 같이쓴 방식 이럴때는 get방식의 단점을 보안하기 위헤 RedirectAttributes를 씀, RedirectAttributes는 post방식처럼 보일수는 있겟지만 session을 이용한 다
 	public String update(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 		logger.info("update");
-	
-		service.update(boardVO, scri, rttr, rttr);
 		
+		service.update(boardVO, scri, rttr);
 
 		return "redirect:/board/list";
 	}
@@ -94,13 +95,7 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	@RequestMapping(value = "/delete", method = {RequestMethod.GET,RequestMethod.POST}) //위외 동일
 	public String delete(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 		logger.info("delete");
-		
-		service.delete(boardVO.getBno());
-		
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
+		service.delete(boardVO.getBno(), boardVO, scri, rttr);
 		
 		return "redirect:/board/list";
 		}
@@ -109,41 +104,27 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	@RequestMapping(value="/replyWrite", method = RequestMethod.POST)
 	public String replyWrite(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		logger.info("reply Write");
+		replyService.writeReply(vo, scri, rttr);
 		
-		replyService.writeReply(vo);
-		
-		rttr.addAttribute("bno", vo.getBno());
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
-		
-		return "redirect:/board/readView";
+		return "redirect:/board/readView"; 	
 		}
 		
 	//댓글 수정 GET
 	@RequestMapping(value="/replyUpdateView", method = RequestMethod.GET)
 	public String replyUpdateView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
 		logger.info("reply Write");
-		
-		model.addAttribute("replyUpdate", replyService.selectReply(vo.getRno()));
-		model.addAttribute("scri", scri);
+		replyService.replyUpdateView(vo, scri, model);
 		
 		return "board/replyUpdateView";
 	}
 	
 	//댓글 수정 POST
 	@RequestMapping(value="/replyUpdate", method = RequestMethod.POST)
-	public String replyUpdate(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+	public String replyUpdate(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr, int rno) throws Exception {
 		logger.info("reply Write");
 		
-		replyService.updateReply(vo);
-		
-		rttr.addAttribute("bno", vo.getBno());
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
+		replyService.updateReply(vo, scri, rttr);
+		replyService.selectReply(rno);
 		
 		return "redirect:/board/readView";
 	}
@@ -151,11 +132,8 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	//댓글 삭제 GET
 	@RequestMapping(value="/replyDeleteView", method = RequestMethod.GET)
 	public String replyDeleteView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
-		logger.info("reply Write");
-		
-		model.addAttribute("replyDelete", replyService.selectReply(vo.getRno()));
-		model.addAttribute("scri", scri);
-		
+		logger.info("reply Write");	
+		replyService.replyDeleteView(vo, scri, model);
 
 		return "board/replyDeleteView";
 	}
@@ -164,14 +142,7 @@ public class BoardController { //퍼블릭 클레스 컨트롤러 선언
 	@RequestMapping(value="/replyDelete", method = RequestMethod.POST)
 	public String replyDelete(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		logger.info("reply Write");
-		
-		replyService.deleteReply(vo);
-		
-		rttr.addAttribute("bno", vo.getBno());
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
+		replyService.deleteReply(vo, scri, rttr);
 		
 		return "redirect:/board/readView";
 	}

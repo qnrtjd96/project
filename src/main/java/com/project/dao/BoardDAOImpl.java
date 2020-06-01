@@ -10,9 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.project.vo.BoardVO;
 import com.project.vo.SearchCriteria;
 
-@Repository
-public class BoardDAOImpl implements BoardDAO {
+@Repository //자동 객체 생성 특히, dao를 지칭하는 말이기도함(스프링이 알아서 관리해주게됨) : 이게 자동으로 생성되려면 설정파일에서 <context:component-scan 지정필요>
 
+public class BoardDAOImpl implements BoardDAO {
+	
+	// 설정파일에서 생성한 sqlSessionTemplate 객체를 자동 주입한다.(Autowired, Resource 와 유사함)
 	@Inject
 	private SqlSession sqlSession;
 	
@@ -24,6 +26,7 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	// 게시물 목록 조회
 	@Override
+	//페이징 처리를 위한 메서드
 	public List<BoardVO> list(SearchCriteria scri) throws Exception {
 		return sqlSession.selectList("boardMapper.listPage", scri);
 	}
@@ -36,8 +39,8 @@ public class BoardDAOImpl implements BoardDAO {
 	// 게시물 조회
 	@Override
 	public BoardVO read(int bno) throws Exception {
-		return sqlSession.selectOne("boardMapper.read", bno);
-	}
+		return sqlSession.selectOne("boardMapper.read", bno); //게시글 번호를 받아 DB작업을 통해 현재 게시판 정보를 DTO에 담아 반환
+	} 
 	
 	// 게시물 수정
 	@Override
