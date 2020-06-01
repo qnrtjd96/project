@@ -65,11 +65,17 @@
 				
 			}
 			var str = getBrowserType();
-			alert(str + "으로 접속하셧습니다.");
+				if (getBrowserType("CHROM")){
+					alert("크롬은 보안정책상 위치정보를 받아오지 못합니다.");
+					
+				}
+				if (getBrowserType()){
+					alert(str + "으로 접속하셨습니다.");
+				}
 	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		mapOption = {
-			center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
+			center : new kakao.maps.LatLng(37.548517, 126.914379), // 지도의 중심좌표
 			level : 6
 		// 지도의 확대 레벨
 		};

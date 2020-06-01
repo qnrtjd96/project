@@ -31,7 +31,7 @@
 						<thead>
 							<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th></tr>
 						</thead>
-						<c:forEach items="${list}" var ="list"> <!--list를 출력해주는 jstl문(배열요소를 순서대로 반복적으로 처리할수 있음)  -->
+						<c:forEach items="${list}" var ="list"> <!--list를 출력해주는 jstl문(배열요소를 순서대로 반복적으로 처리할수 있음)  여기서 db의 값을 뽑아서 순서대로 반복적으로 쭉 넣어주는것-->
 							<tr>
 								<td><c:out value="${list.bno}" /></td><!-- 번호칸에들어감 list.bno list 객체의 bno를 뽑아준다. -->
 								<!--
@@ -53,7 +53,7 @@
 					<div class="search row">
 						<div class="col-xs-2 col-sm-2">
 							<select name="searchType" class="form-control">
-							<!--   -->
+							<!-- 검색부분이며 데이터가 들어갈때에는 option의 value값이 n t c w tc 의 값을 스크립트로 보내줌-->
 								<option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
 								<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 								<option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
@@ -64,7 +64,7 @@
 						 
 						<div class="col-xs-10 col-sm-10">
 							<div class="input-group">
-							<!-- 키워드를 통해서 검색을 진행한다 -->
+							<!-- 이부분이 원하는 키워드를 적용할 곳 이다. -->
 								<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
 								<span class="input-group-btn">
 									<button id="searchBtn" type="button" class="btn btn-default">검색</button> 	
@@ -73,8 +73,9 @@
 						</div>
 						 
 						<script>
-						//searchBtn를 눌렀을때, list, pageMaker.makeQuery+searchType과 select의 값과 키워드의 값을 넣어서  self.location으로 url을 호출한다.
+						//searchBtn를 클릭했을때 함수를 호출하는대 그건 아래와 같다.
 							 $(function(){$('#searchBtn').click(function() {
+								 	 //self.location은 다른 url로 이동시키는 방법 이며  pageMaker의 makeQuery의 메소드에 파라미터 1을 넣어준다. + 옵션의 벨류값을 가져옴 + 키워드인풋의 벨류값을 가져온다. 이것을 url로 보낸다.
 									 self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 								 });
 							 });   			 
@@ -83,8 +84,9 @@
 					<div class="col-md-offset-3" style="padding-left: 100px;">
 						<ul class="pagination">
 							<!-- 이전페이지 -->
+							<!--  -->
 							<c:if test="${pageMaker.prev}">
-								<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+								<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li> <!--  -->
 							</c:if> 
 							
 							<!-- 현재 페이지 -->

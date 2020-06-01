@@ -9,6 +9,14 @@ public class ReplyVO {
 	private String content;
 	private String writer;
 	private Date regdate;
+	private int replycount;
+	
+	public int getReplycount() {
+		return replycount;
+	}
+	public void setReplycount(int replycount) {
+		this.replycount = replycount;
+	}
 	public int getBno() {
 		return bno;
 	}
@@ -39,6 +47,7 @@ public class ReplyVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+	
 	
 	@Override
 	public String toString() {

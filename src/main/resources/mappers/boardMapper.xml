@@ -14,9 +14,9 @@
 	                 		  , #{content}
 	                 		  , #{writer}  )
     </insert>
-    
+
     <!-- 게시물 목록  -->
-    <select id="listPage" resultType="com.project.vo.BoardVO" parameterType="com.project.vo.SearchCriteria">
+    <select id="listPage" resultType="com.project.vo.BoardVO" parameterType="com.project.vo.SearchCriteria"> <!-- parameterType 해당구문에 전달될 파라미터의 패키지 경로를 포함할 전체 클래스명이나 별칭-->
 		SELECT  BNO, 
 		        TITLE, 
 		        CONTENT,

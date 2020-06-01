@@ -52,10 +52,10 @@
 		 WHERE RNO = #{rno}
 	</select>
 	
-	<!-- 댓글개수  -->
-	<!-- <select id="countReply" resultType="int">
+	<!-- 댓글개수확인  -->
+	<select id="countReply" resultType="int">
 		SELECT COUNT(*) FROM MP_REPLY
 		 WHERE BNO = #{bno}
-	</select>  -->
+	</select>
   	
 </mapper>

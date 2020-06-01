@@ -39,7 +39,6 @@ public class AdminController { //public 접근제어 admincontroller class에 �
 	public String delete(@RequestParam("userId") String userId, AdminVO adminVO) throws Exception{ //delete메소드 선언 리퀘스트 usrId를  받아줄 매개변수 userId값을 만들고 adminVO에 담는다
 		
 		logger.info("delete");
-		
 		service.delete(adminVO);
 		
 		return "redirect:/admin/list";
