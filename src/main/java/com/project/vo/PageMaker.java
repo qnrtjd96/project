@@ -57,7 +57,7 @@ public class PageMaker {
 		//끝페이지=(현재페이지 번호/페이지 번호의 개수)*페이지 번호의 갯수  //현재페이지의 블록의 끝번호
 		endPage = (int) (Math.ceil(cri.getPage() / (double)displayPageNum) * displayPageNum); //(무조건올림 Math.ceil이 올려주는 역할을 함)
 		
-		//시작페이지(현재페이지-페이지 번호의 갯수) +1 //현재페이지의 블록의 시작번호
+		//시작페이지(끝페이지-페이지 번호의 갯수) +1 //현재페이지의 블록의 시작번호
 		startPage = (endPage - displayPageNum) + 1; //+1을 한 이유는 첫페이지가 0이 아닌 1로 시작하게 하기위해 1~10, 11~20
 		
 		
@@ -66,7 +66,7 @@ public class PageMaker {
 		//
 		if (endPage > tempEndPage) { //endPage가 tempEndPage 보다 크다면
 			endPage = tempEndPage; //같다고 표시한다.
-		}
+		}      //  << 1 2 3 4 (5) 6 7 8 9 >>
 		prev = startPage == 1 ? false : true; //이전 startpage==1이면(1페이지면 이전을 누를수 없게) false : ture;
 		next = endPage * cri.getPerPageNum() >= totalCount ? false : true; //다음 엔트페이지 * perpageNum가 >>> 총게시물  크거나 같으면 false: true;
 	}

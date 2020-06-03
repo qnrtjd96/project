@@ -40,7 +40,7 @@ public class Criteria {
 	}
 	
 	public int getRowStart() {
-		rowStart = ((page - 1) * perPageNum) + 1; //시작 페이지의번호(1,11,21) = ((보여줄페이지 -1) * 페이지당 보여줄 게시글 수) +1
+		rowStart = ((page - 1) * perPageNum) + 1; //시작 게시물의번호(1,11,21) = ((보여줄페이지 -1) * 페이지당 보여줄 게시글 수) +1
 		//시작페이지가 0으로 시작하는것을 방지하기 위해+1을 해줌 . ex)((1-1)*10)+1 = 1 이므로 첫 시작 페이지는 1이다. 
 		return rowStart; //이걸 rowstart로 리턴해준다.
 	}

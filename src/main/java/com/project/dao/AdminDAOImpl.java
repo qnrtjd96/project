@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.project.vo.AdminVO;
+import com.project.vo.SearchCriteria;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -17,9 +18,9 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	//회원목록 조회
 	@Override
-	public List<AdminVO> list() throws Exception {
+	public List<AdminVO> list(SearchCriteria scri) throws Exception {
 		
-		return sqlSession.selectList("adminMapper.list"); //리스트를 뽑아내는 거기 때문에 selectList
+		return sqlSession.selectList("adminMapper.list", scri); //리스트를 뽑아내는 거기 때문에 selectList
 	}
 	
 	//회원 삭제
@@ -44,9 +45,8 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	//회원 총 개수
 	@Override
-	public int membercount() throws Exception {
+	public int membercount(SearchCriteria scri) throws Exception {
 		
 		return sqlSession.selectOne("adminMapper.membercount");
 	}
-
 }

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,9 @@ public class MemberController {
 	@Inject
 	MemberService service;
 	
+	@Inject
+	BCryptPasswordEncoder pwdEncoder;
+	
 	// 회원가입 get
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void getregister() throws Exception{
@@ -32,13 +36,12 @@ public class MemberController {
 	}
 	
 	// 회원가입 post
-		@RequestMapping(value = "/register", method = RequestMethod.POST)
-		public String postRegister(MemberVO vo) throws Exception {
-			logger.info("post register");
-			service.register(vo);
-			return "redirect:/";
-		}
-	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String postRegister(MemberVO vo) throws Exception {
+		logger.info("post register");
+		service.register(vo);
+		return "redirect:/";
+	}
 	
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -65,6 +68,7 @@ public class MemberController {
 	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
 	public String registerUpdate(MemberVO vo, HttpSession session) throws Exception{
 		service.memberUpdate(vo, session);
+		System.out.println(vo);
 		return "redirect:/";
 	}
 	
@@ -88,5 +92,15 @@ public class MemberController {
 	public int idChk(MemberVO vo) throws Exception {
 		int result = service.idChk(vo);
 		return result;
+	}
+	
+	//패스워드 체크
+	@ResponseBody //서버에서 클라이언트로 응답데이터를 전송하기 위해서 사용한다. 자바객체를 http응답 본문에 객체로 전환하여 클라이언트로 전송하는시키는 역할을 함
+	@RequestMapping(value="/passChk", method = RequestMethod.POST)
+	public boolean passChk(MemberVO vo, RedirectAttributes rttr, HttpServletRequest request) throws Exception {
+		
+		MemberVO login = service.login(vo, request, rttr, request);
+		boolean pwdChk = pwdEncoder.matches(vo.getUserPass(), login.getUserPass());
+		return pwdChk;
 	}
 }

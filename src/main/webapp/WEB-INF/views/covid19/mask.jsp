@@ -98,7 +98,7 @@
 	
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 			mapOption = {
-				center : new kakao.maps.LatLng(37.553419, 126.971585), // 지도의 중심좌표
+				center : new kakao.maps.LatLng(37.579388, 126.908462), // 지도의 중심좌표
 				level : 3
 			// 지도의 확대 레벨
 			};
@@ -117,8 +117,8 @@
 			});
 		
 			fetch(url)
-			 .then((res) => res.json())
-			 .then((myJson) => { 
+			.then((res) => res.json())
+			.then((myJson) => { 
 			
 				var markers = [];
 				
@@ -158,10 +158,10 @@
 					    else goods="재고없음";
 					    
 						//인포윈도우 텍스트에 담을 변수 생성
-						var iwContent = "storeInfos[i]["name"] + //약국이름
-										"<hr>"+					//줄바꿈
+						var iwContent = storeInfos[i]["name"] + //약국이름
+										"\t\n"+					//줄바꿈
 										goods + 				//재고수량
-										"<hr>"+ 				//줄바꿈
+										"\t\n"+ 				//줄바꿈
 										storeInfos[i]["addr"];	//주소
 						
 						// 마커를 생성합니다
@@ -247,7 +247,7 @@
 	    
 			} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 			    
-			    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+			    var locPosition = new kakao.maps.LatLng(37.579388, 126.908462),    
 			        message = 'geolocation을 사용할수 없어요..'
 			        
 			    displayMarker(locPosition, message);

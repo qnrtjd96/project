@@ -41,7 +41,7 @@
         <a class="nav-link" href="../covid19/mask" style="font-size: 1.5vmin;">■마스크 판매처<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <!-- jstl구문중 하나면서 if문을 이용하여 grade(등급)값을 추출하여 grade가 null이면 로그인 0이면 로그아웃을 뜨게 했다. -->
+        <!-- jstl구문중 하나면서 if문을 이용하여 grade(등급)값을 추출하여 grade가 null이면 로그인,  0이면 로그아웃을 뜨게 했다. -->
         <c:if test="${member.grade == null}"><a href="/" class="nav-link" style="font-size: 1.5vmin;">■로그인</a></c:if>
 		<c:if test="${member.grade == 0}"><a href="/member/logout" class="nav-link" style="font-size: 1.5vmin;">■로그아웃</a></c:if>
 	  </li>

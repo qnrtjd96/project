@@ -125,7 +125,7 @@
 					</form>
 					
 					<!-- member.userId가 == read.writer랑 같거나, member.userId가 123이면, 목록 수정 삭제를 보여준다. -->
-					<c:if test='${member.userId == read.writer or member.userId== "123"}'>
+					<c:if test='${member.userId == read.writer or member.grade == "1"}'>
 						<div style="float: right;">
 							<button type="button" class="update_btn btn btn-warning">수정</button>
 							<button type="button" class="delete_btn btn btn-danger">삭제</button>
@@ -164,7 +164,7 @@
 									  
 									<p>${replyList.content}</p>
 									<!-- 세션에 저장된 member.userId와 replyList.writer 이거나 userid가 123(관리자)일때는 수정삭제가 열린다. -->
-									<c:if test='${member.userId == replyList.writer or member.userId== "123"}'>
+									<c:if test='${member.userId == replyList.writer or member.grade== "1"}'>
 											<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">수정</button>
 											<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">삭제</button>
 									</c:if>

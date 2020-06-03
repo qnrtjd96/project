@@ -5,9 +5,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.project.dao.AdminDAO;
 import com.project.vo.AdminVO;
+import com.project.vo.PageMaker;
+import com.project.vo.SearchCriteria;
 
 @Service
 public class AdminServiceImpl implements AdminService { //구현부(adminserviceImpl)가 상속한다. 인터페이스(adminService)를 	implements와extends와의 큰 차이점은 부모의 메서드를 무조건 다시 override해주어야 된다는 것을 알 수 있다.
@@ -26,9 +29,15 @@ public class AdminServiceImpl implements AdminService { //구현부(adminservice
 	
 	// 회원 목록 조회
 	@Override
-	public List<AdminVO> list() throws Exception { //list<AdminVO>인터페이스에서 내린걸 다시선언  
-
-		return dao.list();//dao에게 전달함list를
+	public List<AdminVO> list(Model model, SearchCriteria scri) throws Exception { //list<AdminVO>인터페이스에서 내린걸 다시선언  
+		model.addAttribute("list", dao.list(scri)); //모델에 list를 뽑아올건대, scri의 값을 넣어온다.
+		
+		PageMaker pageMaker = new PageMaker(); //페이징적용을 위해서 pagemaker선언
+		pageMaker.setCri(scri); //scri의 값을 세팅한다 뒤에가면 알겟지만 10개씩 세팅한다. page와  perPagenum을 세팅해준다.
+		pageMaker.setTotalCount(dao.membercount(scri)); //총 회원의 수를 가져와서 세팅한다.
+		
+		model.addAttribute("pageMaker", pageMaker);
+		return dao.list(scri);//dao에게 전달함list를
 	}
 
 	// 회원 삭제
@@ -55,6 +64,8 @@ public class AdminServiceImpl implements AdminService { //구현부(adminservice
 	@Override
 	public int membercount() throws Exception {
 		
-		return dao.membercount();
+		return dao.membercount(null);
 	}
+
+
 }

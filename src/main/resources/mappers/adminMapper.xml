@@ -5,14 +5,37 @@
 <mapper namespace="adminMapper">
 	<!-- 관리자 페이지 - 회원목록조회 -->
 	<select id="list" resultType="com.project.vo.AdminVO">
-		SELECT USERID, 
-			   USERPASS, 
+		SELECT MNO,
+			   USERID, 
+               USERPASS, 
 			   USERNAME,
 			   REGDATE,
 			   GRADE
-		FROM   MP_MEMBER
-		ORDER BY USERID DESC
+		FROM (
+                SELECT MNO,
+                	   USERID, 
+		               USERPASS,  
+		               USERNAME, 
+		               REGDATE,
+		               GRADE, 
+		               ROW_NUMBER() OVER(ORDER BY mp_member.mno DESC) AS RNUM
+		        FROM   mp_member
+		         WHERE 1=1 
+		         	<include refid='search'></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY MNO DESC
 	</select>
+	
+	<!-- 검색 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND USERID LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND USERPASS LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND USERNAME LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND GRADE LIKE '%' || #{keyword} || '%'</if>
+		</if>
+	</sql>
 	
 	<!-- 관리자 페이지 회원목록 삭제 -->
 	<delete id="delete" parameterType="com.project.vo.AdminVO">
@@ -34,8 +57,10 @@
 	</select> 
 	
 	<!-- 차트 게시물 총 갯수 -->
-	<select id="membercount" resultType="int">
+	<select id="membercount" resultType="int" parameterType="com.project.vo.SearchCriteria">
 		SELECT COUNT(USERID) AS MEMBERCOUNT
 		FROM MP_MEMBER
+		where 1=1
+		<include refid='search'></include>
 	</select> 
 </mapper>

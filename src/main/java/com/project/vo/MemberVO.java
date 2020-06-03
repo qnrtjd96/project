@@ -7,9 +7,16 @@ public class MemberVO {
 	private String userId;
 	private String userPass;
 	private String userName;
+	private String address;
 	private Date regDate;
 	private int grade;
 	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public int getGrade() {
 		return grade;
 	}
@@ -43,12 +50,7 @@ public class MemberVO {
 	
 	@Override
 	public String toString() {
-		return "MemberVO [userId=" + userId + ", userPass=" + userPass + ", userName=" + userName + ", regDate="
-				+ regDate + "]";
-	}
-	public static void setLoginIp(String remoteAddr) {
-		// TODO Auto-generated method stub
-		
+		return "MemberVO [userId=" + userId + ", userPass=" + userPass + ", userName=" + userName + ", regDate=" + regDate + ", address=" + address + "]";
 	}
 	
 }

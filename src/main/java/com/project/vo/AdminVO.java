@@ -21,7 +21,14 @@ public class AdminVO {
 	private int boardcount;
 	private int replycount;
 	private int membercount;
+	private int mno;
 	
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
 	public int getReplycount() {
 		return replycount;
 	}

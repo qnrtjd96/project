@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -75,7 +75,7 @@
 	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		mapOption = {
-			center : new kakao.maps.LatLng(37.548517, 126.914379), // 지도의 중심좌표
+			center : new kakao.maps.LatLng(37.579388, 126.908462), // 지도의 중심좌표
 			level : 6
 		// 지도의 확대 레벨
 		};
