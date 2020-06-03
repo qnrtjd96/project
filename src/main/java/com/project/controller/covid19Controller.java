@@ -23,10 +23,4 @@ public class covid19Controller {
 	public void mask() throws Exception{
 		logger.info("mask");	
 	}
-	
-	// 마스크 판매현황 연결Test
-		@RequestMapping(value = "/covid19/mask2", method = RequestMethod.GET)
-		public void mask2() throws Exception{
-			logger.info("mask");	
-		}
 }

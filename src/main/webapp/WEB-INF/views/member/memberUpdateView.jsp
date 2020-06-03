@@ -15,10 +15,8 @@
 		$(document).ready(function(){
 			// 취소
 			$(".cencle").on("click", function(){
-				
 				location.href = "/";
-						    
-			})
+			});
 		
 			$("#submit").on("click", function(){
 				if($("#userPass").val()==""){
@@ -26,12 +24,26 @@
 					$("#userPass").focus();
 					return false;
 				}
-				if($("#userName").val()==""){
-					alert("성명을 입력해주세요.");
-					$("#userName").focus();
-					return false;
-				}
-				alert(${member.userId} + "님 회원정보 수정이 완료되었습니다.");
+				$.ajax({
+					url : "/member/passChk",
+					type : "POST",
+					dateType : "json",
+					data : $("#updateForm").serializeArray(),
+					success: function(data){
+						
+						if(data==true){
+							if(confirm("회원수정하시겠습니까?")){
+								$("#updateForm").submit();
+								alert( "${member.userId}" + "님 회원정보 수정이 완료되었습니다.");
+							}
+							
+						}else{
+							alert("패스워드가 틀렸습니다.");
+							return;
+							
+						}
+					}
+				})
 			});
 		});
 	</script>
@@ -46,7 +58,7 @@
 			 <div>
 				<%@include file="../board/nav.jsp" %>
 			 </div>
-				<form action="/member/memberUpdate" method="post">
+				<form action="/member/memberUpdate" method="post" id="updateForm">
 					<div class="form-group has-feedback">
 						<label class="control-label" for="userId" style="font-size: 18px;">아이디</label>
 						<input class="form-control" type="text" id="userId" name="userId" value="${member.userId}" readonly="readonly" style="height: calc(2.25rem + 10px);"/>
@@ -59,13 +71,13 @@
 						<label class="control-label" for="userName" style="font-size: 18px;">성명</label>
 						<input class="form-control" type="text" id="userName" name="userName" value="${member.userName}" style="height: calc(2.25rem + 10px);"/>
 					</div>
+				</form>
 					<div class="form-group has-feedback" style="margin-top: 30;">
-						<button class="btn btn-success btn-lg btn-block" type="submit" id="submit">회원정보수정</button>
+						<button class="btn btn-success btn-lg btn-block" type="button" id="submit">회원정보수정</button>
 					</div>
 					<div class="form-group has-feedback" style="margin-top: 10;">
 						<button class="cencle btn btn-danger btn-lg btn-block" type="button">취소</button>
 					</div>
-				</form>
 			</div>
 		</section>
 		

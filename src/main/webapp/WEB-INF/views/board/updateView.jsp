@@ -50,7 +50,8 @@
 		
 	</script>
 	<body>
-	
+	<article>
+		<div id="root" class="container">
 		<div id="root">
 			<header>
 				<h1 style="font-size: -webkit-xxx-large;">project</h1>
@@ -102,5 +103,7 @@
 			</div>
 			<hr />
 		</div>
+		</div>
+		</article>
 	</body>
 </html>
