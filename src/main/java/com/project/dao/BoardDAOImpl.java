@@ -33,7 +33,7 @@ public class BoardDAOImpl implements BoardDAO {
 	// 게시물 총 갯수
 	@Override
 	public int listCount(SearchCriteria scri) throws Exception{
-		return sqlSession.selectOne("boardMapper.listCount");
+		return sqlSession.selectOne("boardMapper.listCount", scri);
 	}
 	
 	// 게시물 조회

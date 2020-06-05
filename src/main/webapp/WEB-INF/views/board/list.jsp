@@ -84,20 +84,29 @@
 					<div class="col-md-offset-3" style="padding-left: 100px;">
 						<ul class="pagination">
 							<!-- 이전페이지 -->
-							<!--  -->
 							<c:if test="${pageMaker.prev}">
-								<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li> <!--  -->
+								<li><a href="list${pageMaker.makeSearch(pageMaker.cri.page - 1)}">이전</a></li> <!--  -->
 							</c:if> 
 							
-							<!-- 현재 페이지 -->
+							<!-- 버튼들을 뿌리는 로직 -->
 							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-								<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
-								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<!-- 현재페이지의 값을 가져온다.-->
+								<%-- <li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
+								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li> --%>
+								<!-- 현재 페이지 표시하기 방법1 -->
+								<c:choose>
+									<c:when test="${idx == pageMaker.cri.page}">
+										<li class="page-item active"><a class="page-link">${idx}</a></li>
+									</c:when>
+									<c:when test="${idx != pageMaker.cri.page}">
+										<a class="page-link" href="list${pageMaker.makeSearch(idx)}">${idx}</a>
+									</c:when>
+								</c:choose>
 							</c:forEach>
 							
 							<!-- 다음페이지 -->
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-								<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+								<li><a href="list${pageMaker.makeSearch(pageMaker.cri.page + 1)}">다음</a></li>
 							</c:if> 
 						</ul>
 					</div>

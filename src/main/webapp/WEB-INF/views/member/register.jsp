@@ -43,6 +43,11 @@
 					return false;
 				}
 				
+				if(fn_pw_check()){
+					$("#userpass").focus();
+					return false;
+				}
+				
 				if($("#userName").val()==""){
 					alert("성명을 입력해주세요.");
 					$("#userName").focus();
@@ -67,6 +72,65 @@
 				}
 			})
 		});
+		
+		
+		//비밀번호 영어+숫자+특수기호
+		var pw_passed = true;  // 추후 벨리데이션 처리시에 해당 인자값 확인을 위해/선언
+
+	    function fn_pw_check() {
+	        var pw = document.getElementById("userPass").value; //비밀번호
+	        var pw2 = document.getElementById("userPass1").value; // 확인 비밀번호
+
+	        pw_passed = true;
+
+	        var pattern1 = /[0-9]/;
+	        var pattern2 = /[a-zA-Z]/;
+	        var pattern3 = /[~!@\#$%<>^&*]/;     // 원하는 특수문자 추가 제거
+	        var pw_msg = "";
+
+	        if(pw.length == 0) {
+	               alert("비밀번호를 입력해주세요");
+	               return false;
+	         } else {
+	                if( pw  !=  pw2) {
+	                      alert("재확인 했을때 비밀번호가 일치하지 않습니다.");
+	                      return false;
+	                 }
+	         }
+			
+	        if(pattern1.test(pw) == false){
+	        	alert("비밀번호에 숫자가 없습니다. 숫자를 포함해야 합니다.")
+	        	return false;
+	        }
+	        
+	        if(pattern2.test(pw) == false){
+	        	alert("비밀번호에 문자를 포함하지 않았습니다. 문자를 포함해야합니다.")
+	        	return false;
+	        }
+	        
+	        if(pattern3.test(pw) == false){
+	        	alert("비밀번호에 특수문자를 포함하지 않았습니다. 특수문자를 포함해야 횝니다.")
+	        	return false;
+	        }
+	        
+	        if(pw.length<8){
+	        	alert("길이가 8자리 이하입니다. 8자리 이상이여야 합니다.")
+	        	return false;
+	        }
+	        if(pw.length>50){
+	        	alert("패스워드 길이가 너무 깁니다. 50자리 이상 넘기시면 안됩니다.")
+	        	return false;
+	        }
+		}
+	        
+	       // ||은 or형식  안먹음 코드를 나열해보보는 방식으로 변경
+	       /* if(pattern1.test(pw)||pattern2.test(pw)||pattern3.test(pw)||pw.length<8||pw.length>50){
+	            alert("영문+숫자+특수기호 8자리 이상으로 구성하여야 합니다.");
+	            return false;
+	        	}
+			} */
+		
+
 		
 		function fn_idChk(){
 			$.ajax({

@@ -1,7 +1,7 @@
 package com.project.vo;
 
 public class Criteria {
-	private int page; //보여줄 페이지
+	private int page; //보여줄 페이지의 게시글 번호
 	private int perPageNum; //페이지당 보여줄 게시글 수 
 	private int rowStart; //각 페이지의 범위 시작 번호 mapper에 rowstart
 	private int rowEnd; //각 페이지의 범위 끝번호 rowend

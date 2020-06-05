@@ -79,10 +79,22 @@
 								<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li> <!--  -->
 							</c:if> 
 							
-							<!-- 현재 페이지 -->
+							<!--하나의 블럭에서 반복문 수행 시작페이지부터 끝페이짖 까지 -->
 							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+							
+								<%-- <li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
+							        <a href='<c:url value="/board/list?page=${idx}"/>'><i class="fa">${idx}</i></a>
+							    </li> --%>
+								<%-- <c:choose>
+									<c:when test="${idx == pageMaker.cri.page}">
+										<a>${idx}</a>
+									</c:when>
+									<c:when test="${idx != pageMaker.cri.page}">
+										<a href="list${pageMaker.makeSearch(idx)}">${idx}</a>
+									</c:when>
+								</c:choose> --%>
 								<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
-								<a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+									<a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li> 
 							</c:forEach>
 							
 							<!-- 다음페이지 -->

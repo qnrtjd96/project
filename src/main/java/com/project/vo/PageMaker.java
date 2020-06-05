@@ -66,9 +66,9 @@ public class PageMaker {
 		//
 		if (endPage > tempEndPage) { //endPage가 tempEndPage 보다 크다면
 			endPage = tempEndPage; //같다고 표시한다.
-		}      //  << 1 2 3 4 (5) 6 7 8 9 >>
-		prev = startPage == 1 ? false : true; //이전 startpage==1이면(1페이지면 이전을 누를수 없게) false : ture;
-		next = endPage * cri.getPerPageNum() >= totalCount ? false : true; //다음 엔트페이지 * perpageNum가 >>> 총게시물  크거나 같으면 false: true;
+		}
+		prev = cri.getPage() == 1 ? false : true; //이전 startpage==1이면(1페이지면 이전을 누를수 없게) false : ture;
+		next = cri.getPage() * cri.getPerPageNum() >= totalCount ? false : true; //다음 엔트페이지 * perpageNum가 >>> 총게시물  크거나 같으면 false: true;
 	}
 	
 	public String makeQuery(int page) {  //검색할때 쓰는   메소드
@@ -76,15 +76,15 @@ public class PageMaker {
 		UriComponentsBuilder.newInstance() //객체생성
 						    .queryParam("page", page) //페이지 추가
 							.queryParam("perPageNum", cri.getPerPageNum()) //페이지 갯수추가 / 페이지의 갯수가 정해진다.
-							.build();//
+							.build();
 		   
 		return uriComponents.toUriString(); //다시리턴
 	}
 	
 	public String makeSearch(int page) //위에 꺼랑 비슷함 검색할때 쓰는 메소드
 	{
-	 UriComponents uriComponents = //UriComponents는 path나 query에 해당하는 문자열들을 추가해서 원하는 uri를 생성한다.
-	            UriComponentsBuilder.newInstance() //객체생성
+	 //UriComponents는 path나 query에 해당하는 문자열들을 추가해서 원하는 uri를 생성한다.
+	 UriComponents uriComponents = UriComponentsBuilder.newInstance() //객체생성
 	            .queryParam("page", page) //페이지 추가
 	            .queryParam("perPageNum", cri.getPerPageNum()) //한페이지의 갯수
 	            .queryParam("searchType", ((SearchCriteria)cri).getSearchType()) //SearchType을 가져오고
