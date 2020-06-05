@@ -33,6 +33,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> list(Model model, SearchCriteria scri) throws Exception {
 		model.addAttribute("list", dao.list(scri)); //모델에 list를 뽑아올건대, scri의 값을 넣어온다.
+		model.addAttribute("scri", scri);
 		
 		PageMaker pageMaker = new PageMaker(); //페이징적용을 위해서 pagemaker선언
 		pageMaker.setCri(scri); //scri의 값을 세팅한다 뒤에가면 알겟지만 10개씩 세팅한다. page와  perPagenum을 세팅해준다.
